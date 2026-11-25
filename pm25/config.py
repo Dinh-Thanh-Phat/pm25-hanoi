@@ -19,4 +19,4 @@ OM_PREV_RUNS = "https://previous-runs-api.open-meteo.com/v1/forecast"
 FC_START = "2024-01-01"                # previous-runs API có dữ liệu từ khoảng đầu 2024
 
 HORIZONS = (24, 48, 72)
-UNHEALTHY = 55.5                      # µg/m³, ngưỡng AQI "có hại cho sức khoẻ" (US EPA 2024: 55.5)
+UNHEALTHY = 50.0                      # µg/m³, giới hạn TB 24h PM2.5 theo QCVN 05:2023/BTNMT

@@ -58,7 +58,7 @@ def panel() -> tuple[pd.DataFrame, pd.DataFrame]:
         d = pd.read_parquet(f).set_index("time")["pm25"]
         sid = MERGE.get(r.location_id, r.location_id)
         series[sid] = d if sid not in series else series[sid].combine_first(d)
-    idx = pd.date_range(config.START, pd.Timestamp.utcnow().tz_convert(None).floor("h"), freq="h")
+    idx = pd.date_range(config.START, pd.Timestamp.now("UTC").tz_convert(None).floor("h"), freq="h")
     P = pd.DataFrame({sid: clean(s[~s.index.duplicated()].reindex(idx)) for sid, s in series.items()}, index=idx)
     keep = [c for c in P if P[c].notna().sum() >= MIN_HOURS]
     st = st[st.sid.isin(keep)].reset_index(drop=True)

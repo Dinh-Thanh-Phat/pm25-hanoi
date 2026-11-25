@@ -28,13 +28,17 @@ def _key() -> str:
     raise SystemExit("Thiếu OPENAQ_API_KEY trong .env")
 
 
-def _get(url: str, headers: dict | None = None, tries: int = 5) -> dict:
+def _get(url: str, headers: dict | None = None, tries: int = 9) -> dict:
     for i in range(tries):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "pm25-hanoi/1.0", **(headers or {})})
             with urllib.request.urlopen(req, timeout=90) as r:
                 return json.load(r)
         except urllib.error.HTTPError as e:
+            if e.code == 429 and "open-meteo" in url and i < tries - 1:
+                print("   Open-Meteo hết lượt trong giờ, chờ 10 phút…", flush=True)
+                time.sleep(600)                    # gói free: 5.000 lệnh/giờ (lệnh nặng tính nhiều lượt)
+                continue
             if e.code in (408, 429, 500, 502, 503, 504) and i < tries - 1:
                 time.sleep(5 * (i + 1))
                 continue
@@ -55,7 +59,12 @@ def stations() -> pd.DataFrame:
                  {"X-API-Key": _key()})
         p.write_text(json.dumps(d, ensure_ascii=False))
     rows = []
-    for r in json.loads(p.read_text())["results"]:
+    res = json.loads(p.read_text())["results"]
+    reg = config.RAW / "stations_region.json"           # vùng rộng hơn (bbox), thêm trạm ngoại thành
+    if reg.exists():
+        ids = {r["id"] for r in res}
+        res += [r for r in json.loads(reg.read_text())["results"] if r["id"] not in ids]
+    for r in res:
         s = [x for x in r["sensors"] if x["parameter"]["name"] == "pm25"]
         if not s or not r.get("isMonitor") or not r.get("datetimeLast"):
             continue                       # chỉ lấy trạm quan trắc chuẩn, bỏ cảm biến giá rẻ
@@ -129,26 +138,27 @@ def _months(start: str):
 def _openmeteo(base: str, vars_: list[str], points: pd.DataFrame, start: str, name: str, monthly: bool = False) -> None:
     out = config.RAW / name
     out.mkdir(parents=True, exist_ok=True)
-    lat = ",".join(f"{x:.4f}" for x in points.lat)
-    lon = ",".join(f"{x:.4f}" for x in points.lon)
     cur = date.today().isoformat()[:7] if monthly else str(date.today().year)
     for a, b in (_months(start) if monthly else _years(start)):
         tag = a[:7] if monthly else a[:4]
         f = out / f"{tag}.parquet"
-        if f.exists() and tag != cur:
-            continue
-        q = urllib.parse.urlencode({"latitude": lat, "longitude": lon, "start_date": a, "end_date": b,
-                                    "hourly": ",".join(vars_), "timezone": "GMT"})
+        old = pd.read_parquet(f) if f.exists() and tag != cur else None
+        todo = points if old is None else points[~points.point_id.isin(set(old.point_id))]
+        if todo.empty:
+            continue                              # đủ mọi điểm rồi: chỉ tải bù điểm mới khi thêm trạm
+        q = urllib.parse.urlencode({"latitude": ",".join(f"{x:.4f}" for x in todo.lat),
+                                    "longitude": ",".join(f"{x:.4f}" for x in todo.lon),
+                                    "start_date": a, "end_date": b, "hourly": ",".join(vars_), "timezone": "GMT"})
         d = _get(f"{base}?{q}")
         d = d if isinstance(d, list) else [d]
-        frames = []
-        for pid, part in zip(points.point_id, d):
+        frames = [] if old is None else [old]
+        for pid, part in zip(todo.point_id, d):
             h = pd.DataFrame(part["hourly"])
             h["time"] = pd.to_datetime(h["time"])
             h["point_id"] = pid
             frames.append(h)
         pd.concat(frames).to_parquet(f, index=False)
-        print(f"{name} {tag}: {len(frames[0])} giờ × {len(frames)} điểm", flush=True)
+        print(f"{name} {tag}: +{len(todo)} điểm", flush=True)
         time.sleep(8 if monthly else 1)
 
 
