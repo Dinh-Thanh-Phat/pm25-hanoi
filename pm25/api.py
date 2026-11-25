@@ -131,7 +131,7 @@ _deploy_lock = threading.Lock()
 
 def push_vercel(full: bool = False) -> None:
     global _last_hash
-    if not (SITE / ".vercel").exists():
+    if not (SITE / ".vercel").exists() or (ROOT / ".cloud-deploy").exists():   # GitHub Actions đã lo thì máy thôi đẩy
         return
     with _deploy_lock:
         t0, msg = time.time(), ""

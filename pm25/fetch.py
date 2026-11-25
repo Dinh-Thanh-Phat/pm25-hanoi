@@ -9,6 +9,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 import time
 import urllib.error
@@ -22,6 +23,8 @@ from . import config
 
 
 def _key() -> str:
+    if os.environ.get("OPENAQ_API_KEY"):              # GitHub Actions: key nằm trong Secrets
+        return os.environ["OPENAQ_API_KEY"]
     for line in (config.ROOT / ".env").read_text().splitlines():
         if line.startswith("OPENAQ_API_KEY="):
             return line.split("=", 1)[1].strip()

@@ -1,0 +1,11 @@
+# Bản cho GitHub Actions: chỉ những gì cần để dự báo + xuất trang tĩnh (không torch, không uvicorn).
+# Phiên bản khóa đúng máy train để mô hình .joblib nạp được.
+pandas==3.1.1
+numpy==2.5.5
+pyarrow==26.0.1
+scikit-learn==1.9.1
+scipy==1.18.1
+joblib==1.6.0
+fastapi==0.165.0
+starlette==1.10.0
+httpx==0.28.1
