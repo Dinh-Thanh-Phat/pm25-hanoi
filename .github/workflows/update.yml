@@ -4,6 +4,9 @@ name: cap-nhat-so-lieu
 on:
   schedule:
     - cron: "*/30 * * * *"
+  push:                      # sửa workflow thì chạy thử ngay
+    branches: [main]
+    paths: [".github/workflows/update.yml", "tools/build_static.py", "requirements-ci.txt"]
   workflow_dispatch:
     inputs:
       tai_bu:
