@@ -1,7 +1,9 @@
 """Giao diện + API. Chạy: .venv/bin/uvicorn pm25.api:app --port 8200"""
 from __future__ import annotations
 
+import hashlib
 import json
+import subprocess
 import threading
 import time
 from datetime import datetime, timedelta
@@ -116,8 +118,52 @@ def _scheduler() -> None:
             nxt += timedelta(days=1)
         time.sleep((nxt - now).total_seconds())
         nightly_update()
+        push_vercel(full=True)                          # lịch sử vừa dài thêm → xuất lại toàn bộ
+
+
+# ---------- đẩy bản tĩnh lên Vercel mỗi 30 phút (chỉ khi site/ đã link với Vercel) ----------
+ROOT = Path(__file__).resolve().parents[1]
+SITE = ROOT / "site"
+DEPLOY_LOG = config.OUT / "deploy.log"
+_last_hash = None
+_deploy_lock = threading.Lock()
+
+
+def push_vercel(full: bool = False) -> None:
+    global _last_hash
+    if not (SITE / ".vercel").exists():
+        return
+    with _deploy_lock:
+        t0, msg = time.time(), ""
+        try:
+            r = subprocess.run([str(ROOT / ".venv/bin/python"), "tools/build_static.py"] + ([] if full else ["--live"]),
+                               cwd=ROOT, capture_output=True, text=True, timeout=600)
+            if r.returncode:
+                raise RuntimeError(r.stderr.strip().splitlines()[-1] if r.stderr.strip() else f"build exit {r.returncode}")
+            h = hashlib.md5((SITE / "data/hien-tai.json").read_bytes()).hexdigest()
+            if h == _last_hash and not full:
+                msg = "bỏ qua: số không đổi"
+            else:
+                d = subprocess.run(["npx", "-y", "vercel@latest", "deploy", "--prod", "--yes"], cwd=SITE,
+                                   capture_output=True, text=True, timeout=600)
+                if d.returncode:
+                    raise RuntimeError((d.stderr or d.stdout).strip().splitlines()[-1])
+                _last_hash = h
+                msg = "đã deploy" + (" (toàn bộ)" if full else "")
+        except Exception as e:
+            msg = f"lỗi {type(e).__name__}: {e}"
+        with DEPLOY_LOG.open("a") as f:
+            f.write(f"{datetime.now():%Y-%m-%d %H:%M} {msg} ({time.time() - t0:.0f}s)\n")
+
+
+def _vercel_loop() -> None:
+    push_vercel(full=True)                              # vừa bật server: đẩy bản mới nhất
+    while True:
+        time.sleep(30 * 60)
+        push_vercel()
 
 
 @app.on_event("startup")
 def _start_scheduler() -> None:
     threading.Thread(target=_scheduler, daemon=True, name="tai-bu-dem").start()
+    threading.Thread(target=_vercel_loop, daemon=True, name="day-vercel").start()
