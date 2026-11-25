@@ -95,6 +95,21 @@ def compute() -> dict:
                       for i, v in s.loc[t - pd.Timedelta(hours=72):t].dropna().items()],
         })
     out.pop("_p", None)
+    # thời tiết của điểm gần trung tâm: 24h vừa qua và 3 ngày tới (để giải thích vì sao bụi lên/xuống)
+    pts = fetch.weather_points()
+    c = pts.iloc[((pts.lat - config.CENTER[0]) ** 2 + (pts.lon - config.CENTER[1]) ** 2).argmin()].point_id
+    w = W[c]
+    def agg(a, b):
+        x = w.loc[a:b]
+        if x.empty:
+            return None
+        return {"gio": round(float(x.wind_speed_10m.mean()), 1), "mua": round(float(x.precipitation.sum()), 1),
+                "blh": round(float(x.boundary_layer_height.mean())), "nhiet": round(float(x.temperature_2m.mean()), 1),
+                "am": round(float(x.relative_humidity_2m.mean())),
+                "huong": round(float(np.degrees(np.arctan2(np.sin(np.radians(x.wind_direction_10m)).mean(),
+                                                           np.cos(np.radians(x.wind_direction_10m)).mean())) % 360))}
+    out["thoi_tiet"] = {"qua": agg(t - pd.Timedelta(hours=23), t),
+                        **{str(h): agg(t + pd.Timedelta(hours=h - 23), t + pd.Timedelta(hours=h)) for h in config.HORIZONS}}
     return out
 
 

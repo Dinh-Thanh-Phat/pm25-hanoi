@@ -9,7 +9,7 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 
-from . import config, dataset, live
+from . import config, dataset, history, live
 
 app = FastAPI(title="Bụi mịn Hà Nội — dự báo 3 ngày")
 STATIC = Path(__file__).parent / "static"
@@ -39,7 +39,29 @@ def results():
         raise HTTPException(404, "Chưa chạy huấn luyện (python -m pm25.train)")
     r = json.loads(f.read_text())
     st = dataset.stations().set_index("sid").ten.to_dict()
-    return {"ket_qua": r, "ten_tram": {str(k): v for k, v in st.items()}, "nguong": config.UNHEALTHY}
+    extra = {k: json.loads((config.OUT / f).read_text()) for k, f in
+             (("phan_tich", "analysis.json"), ("khong_gian", "spatial_results.json")) if (config.OUT / f).exists()}
+    return {"ket_qua": r, "ten_tram": {str(k): v for k, v in st.items()}, "nguong": config.UNHEALTHY, **extra}
+
+
+@app.get("/api/lich-su")
+def hist():
+    return history.get()
+
+
+@app.get("/api/tram")
+def stations_meta():
+    """Mọi trạm (kể cả đã ngừng): khoảng thời gian có số, số giờ đo sạch."""
+    global _ST
+    if _ST is None:
+        P, st = dataset.panel()
+        _ST = [{"sid": int(r.sid), "ten": r.ten, "lat": float(r.lat), "lon": float(r.lon), "so_gio": int(r.so_gio),
+                "tu": f"{P[r.sid].first_valid_index():%Y-%m-%d}", "den": f"{P[r.sid].last_valid_index():%Y-%m-%d}"}
+               for r in st.itertuples()]
+    return _ST
+
+
+_ST = None
 
 
 @app.get("/api/doi-chieu")
