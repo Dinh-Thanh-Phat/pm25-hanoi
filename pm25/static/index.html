@@ -32,7 +32,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans
 a{color:inherit}
 button{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:6px}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+/* lề trái/phải chỉ đặt ở đây; thẻ nào có .wrap thì KHÔNG dùng padding viết gộp */
+.wrap{max-width:var(--maxw);margin-left:auto;margin-right:auto;padding-left:var(--gut);padding-right:var(--gut)}
 h1,h2,h3{font-family:var(--display);font-weight:800;font-stretch:88%;letter-spacing:-.01em;line-height:1.08;margin:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
@@ -241,7 +242,7 @@ details summary{cursor:pointer;font-size:14px;font-weight:500;margin-top:16px}
 .end p{margin:0;max-width:60ch;color:var(--on-night-m)}
 .end b{color:var(--on-night);font-weight:500}
 .end a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:var(--on-night);color:var(--night);font-weight:500;padding:10px 18px;border-radius:12px}
-footer{color:var(--muted);font-size:13px;padding:8px 0 48px}
+footer{color:var(--muted);font-size:13px;padding-top:8px;padding-bottom:48px}
 
 /* ================= responsive ================= */
 @media (max-width:1100px){

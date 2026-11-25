@@ -19,7 +19,7 @@ app.mount("/img", StaticFiles(directory=STATIC / "img"), name="img")
 
 @app.get("/")
 def index():
-    return FileResponse(STATIC / "index.html")
+    return FileResponse(STATIC / "index.html", headers={"Cache-Control": "no-cache"})   # luôn lấy bản mới, tránh thấy CSS cũ
 
 
 @app.get("/api/hien-tai")
