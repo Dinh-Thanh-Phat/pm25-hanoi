@@ -11,7 +11,7 @@ async (page) => {
       const cw = document.documentElement.clientWidth, gut = parseFloat(getComputedStyle(document.querySelector('.wrap')).paddingLeft);
       const mw = parseFloat(getComputedStyle(document.querySelector('.wrap')).maxWidth), exp = Math.max(0, (cw - mw) / 2) + gut, bad = new Set();
       document.querySelectorAll('.hero-grid *, .top *, main *, footer *, .photo *').forEach(e => {
-        if (e.classList.contains('wrap') || e.closest('.leaflet-container, .tbl, svg, details:not([open]) > :not(summary)')) return;
+        if (e.classList.contains('wrap') || e.closest('.haze, .leaflet-container, .tbl, svg, details:not([open]) > :not(summary)')) return;
         const b = e.getBoundingClientRect(); if (!b.width || !b.height) return;
         if (b.left < exp - 1 || b.right > cw - exp + 1) bad.add(`${e.tagName}${e.id ? '#' + e.id : ''}.${String(e.className).split(' ')[0]} ${Math.round(b.left)}..${Math.round(cw - b.right)}`);
       });

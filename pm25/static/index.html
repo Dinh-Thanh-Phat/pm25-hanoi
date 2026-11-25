@@ -13,21 +13,19 @@
 <style>
 :root{
   --night:#101b24; --night2:#16242f; --on-night:#eef3f5; --on-night-m:rgba(238,243,245,.74); --glass:rgba(10,17,23,.62); --glass-line:rgba(238,243,245,.16);
-  --bg:#e7edf0; --paper:#f8fafb; --ink:#14212a; --muted:#52626b; --line:#cbd6db; --soft:#dbe4e8; --focus:#1f6fb2;
+  /* tông tối màu bụi: đen → xám tiêu; phần cuối trang (.lite) tan thành trắng ngà */
+  --bg:#12181c; --paper:#1e2427; --ink:#ecebe6; --muted:#b4b6b1; --line:#363c40; --soft:#2a3034; --focus:#8cc4f0;
   --q1:#3d9a4b; --q2:#d8b21d; --q3:#e9822b; --q4:#d23b2d; --q5:#80408f; --q6:#6b1c2e;
   --q1t:#fff; --q2t:#1d1a08; --q3t:#1f1207; --q4t:#fff; --q5t:#fff; --q6t:#fff;
   --display:"Archivo", "Arial Narrow", system-ui, sans-serif;
   --sans:"Lexend", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --maxw:clamp(1240px,90vw,1720px); --gut:clamp(20px,4vw,64px);   /* màn rộng: nội dung giãn theo màn, không dồn giữa */
-  --shadow:0 1px 2px rgba(10,25,35,.06), 0 14px 34px rgba(10,25,35,.08);
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 18px 40px rgba(0,0,0,.32);
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0f171c; --paper:#151f25; --ink:#e3eaed; --muted:#9aa9b0; --line:#2a373d; --soft:#1c282e; --focus:#7db8ea;
-  --shadow:0 1px 2px rgba(0,0,0,.3), 0 14px 34px rgba(0,0,0,.35);
-}}
-:root[data-theme="dark"]{--bg:#0f171c; --paper:#151f25; --ink:#e3eaed; --muted:#9aa9b0; --line:#2a373d; --soft:#1c282e; --focus:#7db8ea}
+.lite{--bg:#f1f0eb; --paper:#fbfaf7; --ink:#1d2124; --muted:#55595b; --line:#d6d3cb; --soft:#e6e3dc; --focus:#1f6fb2;
+  --shadow:0 1px 2px rgba(40,35,25,.06), 0 14px 34px rgba(40,35,25,.08); color:var(--ink)}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scrollbar-gutter:stable;scroll-behavior:smooth;background:var(--bg)}
+html{-webkit-text-size-adjust:100%;scrollbar-gutter:stable;scroll-behavior:smooth;background:#f1f0eb}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);font-feature-settings:"tnum";overflow-x:hidden}
 a{color:inherit}
 button{font:inherit;color:inherit}
@@ -109,20 +107,29 @@ h1,h2,h3{font-family:var(--display);font-weight:800;font-stretch:88%;letter-spac
 .big .u{font-size:17px;color:var(--on-night-m);padding-bottom:10px}
 .lvl-pill{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-stretch:90%;font-size:clamp(24px,2.6vw,34px);
   margin:16px 0 6px}
-.lvl-pill i{width:16px;height:16px;border-radius:50%;background:var(--lv,#999);box-shadow:0 0 0 4px rgba(255,255,255,.14),0 0 22px var(--lv,#999)}
-.advice{font-size:16.5px;max-width:46ch;margin:4px 0 0;color:var(--on-night)}
+.lvl-pill{background:var(--lv,#999);color:var(--lvt,#fff);padding:4px 20px 6px 14px;border-radius:999px;text-shadow:none;box-shadow:0 0 0 5px color-mix(in srgb,var(--lv,#999) 28%,transparent),0 10px 34px color-mix(in srgb,var(--lv,#999) 45%,transparent)}
+.lvl-pill i{width:12px;height:12px;border-radius:50%;background:currentColor;opacity:.85}
+.advice{font-size:18px;font-weight:500;line-height:1.45;max-width:44ch;margin:14px 0 0;color:var(--on-night);padding:12px 16px;border-left:4px solid var(--lv,#999);
+  border-radius:0 14px 14px 0;background:rgba(10,17,23,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.advice:empty{display:none}
+.now{display:inline-flex;align-items:center;gap:10px;margin:0 0 16px;padding:6px 14px 6px 10px;border-radius:999px;background:rgba(10,17,23,.55);border:1px solid var(--glass-line);
+  font-size:14.5px;color:var(--on-night-m);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.now:empty{display:none}
+.now i{width:10px;height:10px;border-radius:50%;flex:none;box-shadow:0 0 0 3px rgba(255,255,255,.12)}
+.now b{color:var(--on-night);font-family:var(--display);font-weight:800;font-size:19px;font-stretch:80%}
 .same{font-size:14.5px;color:var(--on-night-m);margin:8px 0 0;max-width:52ch}
 
 .days{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:26px 0 0;max-width:520px}
-.days button{all:unset;cursor:pointer;border-radius:14px;padding:10px 12px 11px;background:rgba(255,255,255,.06);border:1px solid var(--glass-line);
-  transition:background .25s,border-color .25s,transform .25s;min-width:0}
-.days button:hover{background:rgba(255,255,255,.12)}
+.days button{all:unset;cursor:pointer;border-radius:14px;padding:12px 12px 11px;min-width:0;
+  background:color-mix(in srgb,var(--c,#888) 20%,rgba(10,17,23,.55));border:1px solid color-mix(in srgb,var(--c,#888) 45%,transparent);box-shadow:inset 0 3px 0 var(--c,#888);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .25s,border-color .25s,transform .25s}
+.days button:hover{background:color-mix(in srgb,var(--c,#888) 30%,rgba(10,17,23,.55))}
 .days button:focus-visible{outline:2px solid #fff;outline-offset:2px}
-.days button[aria-pressed="true"]{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.6)}
+.days button[aria-pressed="true"]{background:color-mix(in srgb,var(--c,#888) 38%,rgba(10,17,23,.55));border-color:#fff}
 .days .w{display:block;font-size:12.5px;color:var(--on-night-m);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .days .v{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:800;font-stretch:75%;font-size:30px;line-height:1.15}
 .days .v i{width:10px;height:10px;border-radius:50%;flex:none}
-.days .v small{font-family:var(--sans);font-weight:400;font-size:12px;color:var(--on-night-m);font-stretch:100%}
+.days .v small{font-family:var(--sans);font-weight:500;font-size:12.5px;color:var(--on-night);font-stretch:100%}
 
 .why{margin:24px 0 0;display:grid;gap:8px;max-width:540px}
 .why h2{font-size:15px;font-family:var(--sans);font-weight:500;font-stretch:100%;color:var(--on-night-m);margin-bottom:2px}
@@ -149,9 +156,16 @@ h1,h2,h3{font-family:var(--display);font-weight:800;font-stretch:88%;letter-spac
 .skip-scroll{position:absolute;left:calc(max(0px, (100% - var(--maxw)) / 2) + var(--gut));bottom:20px;z-index:1;font-size:13px;color:var(--on-night-m);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:4px}
 
 /* chuyển hero → nền sáng */
-.fade{height:150px;margin-top:-1px;background:linear-gradient(180deg,#0c141b 0%,#1a2731 12%,#2f3f4a 24%,#4c5d68 36%,#6d7d87 48%,#8e9ca4 60%,#adb9bf 72%,#c7d0d5 83%,#dbe2e6 93%,var(--bg) 100%)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fade{background:linear-gradient(180deg,#0c141b,var(--bg))}}
-:root[data-theme="dark"] .fade{background:linear-gradient(180deg,#0c141b,var(--bg))}
+.fade{height:90px;margin-top:-1px;background:linear-gradient(180deg,var(--night),#12181c)}
+main{position:relative;isolation:isolate}
+#tram{border-image:linear-gradient(180deg,#12181c,#181e21) fill 0/0/0 100vw}
+#lich-su{border-image:linear-gradient(180deg,#181e21,#23282a) fill 0/0/0 100vw}
+#tin-cay{border-image:linear-gradient(180deg,#23282a,#35393a) fill 0/0/0 100vw}
+.haze{height:clamp(180px,22vw,320px);background:linear-gradient(180deg,#35393a 0%,#454848 14%,#5d5f5e 28%,#7a7b78 42%,#9a9994 56%,#b9b7b0 70%,#d3d1ca 82%,#e6e4de 92%,#f1f0eb 100%)}
+#cach-lam,footer{border-image:linear-gradient(#f1f0eb,#f1f0eb) fill 0/0/0 100vw}
+/* hạt bụi rất nhẹ phủ trên nền */
+main:after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.07;mix-blend-mode:screen;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ================= SECTIONS ================= */
 section.band{padding-top:28px;padding-bottom:72px}
@@ -167,8 +181,7 @@ section.band.wrap{padding-left:var(--gut);padding-right:var(--gut)}
 .st-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:20px}
 #map{height:520px;border-radius:14px;background:var(--soft)}
 .leaflet-container{font:inherit;background:var(--soft)}
-.tiles{filter:grayscale(1) contrast(.92) brightness(1.03) opacity(.9)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tiles{filter:grayscale(1) invert(.92) contrast(.85)}}
+.tiles{filter:grayscale(1) invert(.92) contrast(.85)}
 .st-list{display:flex;flex-direction:column}
 .st-row{all:unset;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:12px 10px;border-bottom:1px solid var(--line);cursor:pointer;border-radius:10px;transition:background .2s}
 .st-row:hover{background:var(--soft)}
@@ -426,6 +439,7 @@ html.intro-fly .big .n{opacity:0}
     <div id="err"></div>
     <div class="hero-grid">
       <div>
+        <p class="now" id="now" aria-live="polite"></p>
         <p class="lead" id="lead">Bụi mịn PM2.5 trung bình cả ngày</p>
         <div class="big" aria-live="polite"><span class="n" id="bigN">–</span><span class="u">µg/m³</span></div>
         <div class="lvl-pill" id="lvl"><i></i><span>Đang tính</span></div>
@@ -541,7 +555,8 @@ html.intro-fly .big .n{opacity:0}
   </details>
 </section>
 
-<section class="band wrap" id="cach-lam" aria-labelledby="howH">
+<div class="haze" aria-hidden="true"></div>
+<section class="band wrap lite" id="cach-lam" aria-labelledby="howH">
   <div class="head">
     <h2 id="howH">Cách làm ra con số</h2>
     <p>Toàn bộ dữ liệu và công cụ đều miễn phí, chạy trên một máy tính cá nhân.</p>
@@ -553,7 +568,7 @@ html.intro-fly .big .n{opacity:0}
   </div>
 </section>
 </main>
-<footer class="wrap">
+<footer class="wrap lite">
   Số đo: mạng quan trắc Hà Nội và trạm Đại sứ quán Mỹ, lấy qua OpenAQ. Thời tiết, dự báo thời tiết và CAMS: Open-Meteo. Màu theo thang VN_AQI cho PM2.5 trung bình 24 giờ.
   Ảnh nền: Wikimedia Commons, giấy phép tự do; tác giả và giấy phép ghi dưới từng ảnh.
   Đây là đồ án học tập, không thay cho thông báo chính thức của cơ quan môi trường.
@@ -651,7 +666,8 @@ function renderHero() {
   nEl.dataset.v = v == null ? 0 : v;
   if (v == null || RM) nEl.textContent = fmt(v); else tween(from, v, from ? 600 : 1100, x => nEl.textContent = fmt(x));
   const L = v == null ? null : lvl(v);
-  $("#lvl").style.setProperty("--lv", L ? css("--q" + L[2]) : "#999");
+  $(".hero-grid").style.setProperty("--lv", L ? css("--q" + L[2]) : "#999");
+  $(".hero-grid").style.setProperty("--lvt", L ? css("--q" + L[2] + "t") : "#fff");
   $("#lvl span").textContent = L ? L[1] : "Chưa đủ số đo để dự báo";
   $("#advice").textContent = L ? ADV[L[2]] : "";
   // so với cùng kỳ các năm trước (±7 ngày)
@@ -666,7 +682,7 @@ function renderHero() {
     }
   }
   $("#days").innerHTML = ["24", "48", "72"].map((k, j) => { const x = valOf(k);
-    return `<button type="button" data-k="${k}" aria-pressed="${k === DAY}"><span class="w">${dayName(j, true)}, ${dmy(dayDate(j))}</span>
+    return `<button type="button" data-k="${k}" aria-pressed="${k === DAY}" style="--c:${qc(x)}"><span class="w">${dayName(j, true)}, ${dmy(dayDate(j))}</span>
       <span class="v"><i style="background:${qc(x)}"></i>${fmt(x)}<small>${x == null ? "" : lvl(x)[1]}</small></span></button>`; }).join("");
   $("#days").querySelectorAll("button").forEach(b => b.onclick = () => { DAY = b.dataset.k; renderHero(); renderTrend(false);
     const nb = $(`#days button[data-k="${DAY}"]`); nb && nb.focus(); });
@@ -729,6 +745,7 @@ function renderTrend(anim = true) {
   </svg>`;
   const tl = $("#trend .trend-line"); if (tl) tl.style.setProperty("--len", Math.ceil(tl.getTotalLength()));
   const last = pts[pts.length - 1];
+  $("#now").innerHTML = last ? `<i style="background:${qc(last[1])}"></i>Bây giờ, lúc ${new Date(last[0]).getHours()} giờ: <b>${fmt(last[1])}</b> µg/m³, mức ${lvl(last[1])[1].toLowerCase()}` : "";
   $("#pSub").textContent = (last ? `Mới nhất ${new Date(last[0]).getHours()}h: ${fmt(last[1])} µg/m³. ` : "Không có số đo 72 giờ qua. ") +
     "Khối màu là dự báo trung bình mỗi ngày; dải mờ là sai số trung bình của mô hình khi kiểm tra.";
 }
