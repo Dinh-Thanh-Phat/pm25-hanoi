@@ -1,0 +1,41 @@
+location_id,sensor_id,ten,nguon,lat,lon,tu,den
+2539,5049,US Diplomatic Post: Hanoi,StateAir Hanoi,21.02177,105.819002,2016-01-30,2016-11-09
+7441,21632,Hanoi,AirNow,21.021939,105.818806,2016-11-09,2025-04-09
+1285357,6566240,SPARTAN - Vietnam Acad. Sci.,SPARTAN Network,21.0478,105.8,2019-11-28,2020-06-23
+2161290,7772012,An Khánh,Hanoi Air Quality Monitoring Network,21.0024,105.7181,2024-01-29,2025-06-10
+2161291,7772023,Cầu Diễn,Hanoi Air Quality Monitoring Network,21.0398,105.7652,2024-01-22,2024-12-11
+2161292,7772032,"Số 46, phố Lưu Quang Vũ",Hanoi Air Quality Monitoring Network,21.0152,105.7999,2024-01-29,2026-11-25
+2161293,7772046,Chúc Sơn,Hanoi Air Quality Monitoring Network,20.92,105.7123,2024-01-09,2025-02-05
+2161294,7772104,Cung thiếu nhi,Hanoi Air Quality Monitoring Network,21.0284,105.8556,2024-01-29,2025-02-05
+2161295,7771992,Đầm Trấu,Hanoi Air Quality Monitoring Network,21.0119,105.8644,2024-01-29,2024-01-30
+2161296,7772040,Đào Duy Từ,Hanoi Air Quality Monitoring Network,21.0354,105.8529,2024-01-15,2025-06-10
+2161298,7772025,Đông Kinh Nghĩa Thục,Hanoi Air Quality Monitoring Network,21.032,105.8515,2024-01-29,2024-04-15
+2161299,7771996,Hàng Đậu,Hanoi Air Quality Monitoring Network,21.0399,105.8473,2024-01-29,2024-11-26
+2161300,7771988,Hoàn Kiếm,Hanoi Air Quality Monitoring Network,21.0263,105.8515,2024-01-29,2024-01-31
+2161301,7772073,Khương Trung,Hanoi Air Quality Monitoring Network,20.9949,105.8167,2024-01-29,2024-12-11
+2161302,7771977,Kim Bài,Hanoi Air Quality Monitoring Network,20.858,105.7656,2024-01-29,2024-12-08
+2161303,7772038,Kim Liên,Hanoi Air Quality Monitoring Network,21.0074,105.8358,2024-01-29,2024-03-22
+2161304,7772096,Lê Trực,Hanoi Air Quality Monitoring Network,21.0327,105.8329,2024-01-29,2024-01-31
+2161306,7772087,Minh Khai - Bắc Từ Liêm,Hanoi Air Quality Monitoring Network,21.05,105.74,2024-01-29,2026-11-25
+2161307,7771998,Mỹ Đình,Hanoi Air Quality Monitoring Network,21.0269,105.7731,2024-01-28,2024-01-30
+2161308,7772088,Phạm Văn Đồng,Hanoi Air Quality Monitoring Network,21.05,105.782,2024-01-22,2024-01-22
+2161309,7772016,Pháp Vân,Hanoi Air Quality Monitoring Network,20.9481,105.8493,2024-01-29,2025-02-05
+2161311,7772076,Sài Sơn,Hanoi Air Quality Monitoring Network,21.0167,105.6478,2024-01-23,2025-02-05
+2161313,7772003,Tân Mai,Hanoi Air Quality Monitoring Network,20.9883,105.8549,2024-01-29,2024-03-01
+2161314,7771972,Tây Hồ Tây,Hanoi Air Quality Monitoring Network,21.0563,105.7974,2024-01-29,2024-03-22
+2161315,7772004,Tây Mỗ,Hanoi Air Quality Monitoring Network,21.0058,105.7485,2024-01-29,2024-02-07
+2161316,7772020,Thành Công,Hanoi Air Quality Monitoring Network,21.0197,105.8147,2024-01-29,2024-02-27
+2161317,7772068,Thanh Xuân - Sóc Sơn,Hanoi Air Quality Monitoring Network,21.2287,105.7583,2024-01-29,2024-09-09
+2161318,7772036,Tứ Liên,Hanoi Air Quality Monitoring Network,21.0639,105.8338,2024-01-29,2024-03-22
+2161320,7772059,Vân Hà,Hanoi Air Quality Monitoring Network,21.1476,105.9159,2024-01-29,2025-06-10
+2161321,7772099,Văn Quán,Hanoi Air Quality Monitoring Network,20.972,105.7856,2024-01-29,2024-04-05
+2161322,7772079,Võng La,Hanoi Air Quality Monitoring Network,21.1105,105.7605,2024-01-15,2024-01-15
+4946811,13502150,556 Nguyễn Văn Cừ,Hanoi Air Quality Monitoring Network,21.0491,105.8831,2025-07-03,2026-07-15
+4946812,13502151,Công viên Nhân Chính - Khuất Duy Tiến,Hanoi Air Quality Monitoring Network,21.0031,105.7947,2025-07-03,2026-11-25
+4946813,13502154,Số 1 đường Giải Phóng - phường Bạch Mai - ĐHBK ,Hanoi Air Quality Monitoring Network,21.0052,105.8418,2025-07-03,2026-11-19
+2161297,7771980,Đội Bình,Hanoi Air Quality Monitoring Network,20.6486,105.8204,2024-01-29,2024-10-02
+2161305,7772053,Liên Quan,Hanoi Air Quality Monitoring Network,21.056,105.578,2024-01-23,2025-02-05
+2161310,7772109,Quảng Phú Cầu,Hanoi Air Quality Monitoring Network,20.7793,105.7851,2024-01-29,2024-12-07
+2161312,7772037,Sóc Sơn,Hanoi Air Quality Monitoring Network,21.2575,105.8514,2024-01-29,2025-03-19
+2161319,7771984,Vân Đình,Hanoi Air Quality Monitoring Network,20.7339,105.7703,2024-01-29,2025-02-05
+2161323,7772015,Xuân Mai,Hanoi Air Quality Monitoring Network,20.8994,105.5773,2024-01-29,2025-03-17

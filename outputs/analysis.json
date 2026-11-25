@@ -1,0 +1,1028 @@
+{
+ "24": {
+  "theo_tram": {
+   "Đại sứ quán Mỹ": {
+    "n": 2232,
+    "giu_nguyen": 17.09,
+    "cams_hc": 20.1,
+    "hgb_full_forecast": 10.91,
+    "tb_thuc": 54.8
+   },
+   "An Khánh": {
+    "n": 3607,
+    "giu_nguyen": 12.2,
+    "cams_hc": 13.36,
+    "hgb_full_forecast": 8.56,
+    "tb_thuc": 41.9
+   },
+   "Số 46, phố Lưu Quang Vũ": {
+    "n": 8343,
+    "giu_nguyen": 8.21,
+    "cams_hc": 10.36,
+    "hgb_full_forecast": 7.14,
+    "tb_thuc": 30.2
+   },
+   "Cung thiếu nhi": {
+    "n": 781,
+    "giu_nguyen": 11.76,
+    "cams_hc": 10.03,
+    "hgb_full_forecast": 9.84,
+    "tb_thuc": 48.9
+   },
+   "Đào Duy Từ": {
+    "n": 3609,
+    "giu_nguyen": 8.11,
+    "cams_hc": 11.36,
+    "hgb_full_forecast": 6.63,
+    "tb_thuc": 29.6
+   },
+   "Liên Quan": {
+    "n": 321,
+    "giu_nguyen": 12.35,
+    "cams_hc": 8.4,
+    "hgb_full_forecast": 9.14,
+    "tb_thuc": 56.0
+   },
+   "Minh Khai - Bắc Từ Liêm": {
+    "n": 1894,
+    "giu_nguyen": 16.62,
+    "cams_hc": 23.17,
+    "hgb_full_forecast": 13.29,
+    "tb_thuc": 50.4
+   },
+   "Pháp Vân": {
+    "n": 780,
+    "giu_nguyen": 15.77,
+    "cams_hc": 17.71,
+    "hgb_full_forecast": 11.06,
+    "tb_thuc": 60.5
+   },
+   "Sài Sơn": {
+    "n": 706,
+    "giu_nguyen": 14.71,
+    "cams_hc": 18.37,
+    "hgb_full_forecast": 10.83,
+    "tb_thuc": 65.9
+   },
+   "Sóc Sơn": {
+    "n": 1793,
+    "giu_nguyen": 11.26,
+    "cams_hc": 10.57,
+    "hgb_full_forecast": 9.91,
+    "tb_thuc": 37.2
+   },
+   "Vân Đình": {
+    "n": 759,
+    "giu_nguyen": 8.69,
+    "cams_hc": 7.63,
+    "hgb_full_forecast": 9.58,
+    "tb_thuc": 39.9
+   },
+   "Vân Hà": {
+    "n": 3518,
+    "giu_nguyen": 12.85,
+    "cams_hc": 15.83,
+    "hgb_full_forecast": 9.45,
+    "tb_thuc": 44.3
+   },
+   "Xuân Mai": {
+    "n": 1737,
+    "giu_nguyen": 14.9,
+    "cams_hc": 19.0,
+    "hgb_full_forecast": 11.27,
+    "tb_thuc": 54.1
+   },
+   "556 Nguyễn Văn Cừ": {
+    "n": 7488,
+    "giu_nguyen": 11.89,
+    "cams_hc": 14.59,
+    "hgb_full_forecast": 9.25,
+    "tb_thuc": 44.7
+   },
+   "Công viên Nhân Chính - Khuất Duy Tiến": {
+    "n": 11528,
+    "giu_nguyen": 8.9,
+    "cams_hc": 9.77,
+    "hgb_full_forecast": 6.57,
+    "tb_thuc": 32.3
+   },
+   "Số 1 đường Giải Phóng - phường Bạch Mai - ĐHBK ": {
+    "n": 11009,
+    "giu_nguyen": 11.31,
+    "cams_hc": 14.4,
+    "hgb_full_forecast": 8.18,
+    "tb_thuc": 39.3
+   }
+  },
+  "theo_thang": {
+   "2025-01": {
+    "n": 8047,
+    "tb_thuc": 63.6,
+    "giu_nguyen": 14.49,
+    "cams_hc": 19.36,
+    "hgb_full_forecast": 11.57,
+    "bias": 7.32
+   },
+   "2025-02": {
+    "n": 5101,
+    "tb_thuc": 38.6,
+    "giu_nguyen": 15.89,
+    "cams_hc": 13.93,
+    "hgb_full_forecast": 10.71,
+    "bias": 5.08
+   },
+   "2025-03": {
+    "n": 4494,
+    "tb_thuc": 37.0,
+    "giu_nguyen": 11.82,
+    "cams_hc": 9.81,
+    "hgb_full_forecast": 8.69,
+    "bias": 5.16
+   },
+   "2025-04": {
+    "n": 3126,
+    "tb_thuc": 39.8,
+    "giu_nguyen": 10.06,
+    "cams_hc": 11.61,
+    "hgb_full_forecast": 7.42,
+    "bias": 2.06
+   },
+   "2025-05": {
+    "n": 3185,
+    "tb_thuc": 23.1,
+    "giu_nguyen": 7.06,
+    "cams_hc": 11.41,
+    "hgb_full_forecast": 6.49,
+    "bias": 1.57
+   },
+   "2025-06": {
+    "n": 1255,
+    "tb_thuc": 19.3,
+    "giu_nguyen": 4.28,
+    "cams_hc": 13.71,
+    "hgb_full_forecast": 4.57,
+    "bias": 3.02
+   },
+   "2025-07": {
+    "n": 2585,
+    "tb_thuc": 29.1,
+    "giu_nguyen": 7.88,
+    "cams_hc": 13.72,
+    "hgb_full_forecast": 6.81,
+    "bias": -0.18
+   },
+   "2025-08": {
+    "n": 2754,
+    "tb_thuc": 24.8,
+    "giu_nguyen": 6.8,
+    "cams_hc": 10.51,
+    "hgb_full_forecast": 5.23,
+    "bias": 0.6
+   },
+   "2025-09": {
+    "n": 2689,
+    "tb_thuc": 26.2,
+    "giu_nguyen": 6.05,
+    "cams_hc": 9.94,
+    "hgb_full_forecast": 6.19,
+    "bias": 3.37
+   },
+   "2025-10": {
+    "n": 2913,
+    "tb_thuc": 30.4,
+    "giu_nguyen": 9.24,
+    "cams_hc": 8.29,
+    "hgb_full_forecast": 6.81,
+    "bias": 1.69
+   },
+   "2025-11": {
+    "n": 2439,
+    "tb_thuc": 38.8,
+    "giu_nguyen": 11.99,
+    "cams_hc": 15.62,
+    "hgb_full_forecast": 6.84,
+    "bias": 0.39
+   },
+   "2025-12": {
+    "n": 1815,
+    "tb_thuc": 68.5,
+    "giu_nguyen": 21.09,
+    "cams_hc": 29.39,
+    "hgb_full_forecast": 14.47,
+    "bias": -1.91
+   },
+   "2026-01": {
+    "n": 2185,
+    "tb_thuc": 64.8,
+    "giu_nguyen": 19.55,
+    "cams_hc": 28.91,
+    "hgb_full_forecast": 12.46,
+    "bias": -1.95
+   },
+   "2026-02": {
+    "n": 2309,
+    "tb_thuc": 48.2,
+    "giu_nguyen": 15.97,
+    "cams_hc": 16.93,
+    "hgb_full_forecast": 12.9,
+    "bias": -4.34
+   },
+   "2026-03": {
+    "n": 2539,
+    "tb_thuc": 33.3,
+    "giu_nguyen": 9.53,
+    "cams_hc": 5.82,
+    "hgb_full_forecast": 6.55,
+    "bias": 2.35
+   },
+   "2026-04": {
+    "n": 2361,
+    "tb_thuc": 41.5,
+    "giu_nguyen": 9.31,
+    "cams_hc": 7.23,
+    "hgb_full_forecast": 7.57,
+    "bias": -2.53
+   },
+   "2026-05": {
+    "n": 2217,
+    "tb_thuc": 28.6,
+    "giu_nguyen": 7.1,
+    "cams_hc": 7.55,
+    "hgb_full_forecast": 6.31,
+    "bias": -1.61
+   },
+   "2026-06": {
+    "n": 1211,
+    "tb_thuc": 33.8,
+    "giu_nguyen": 8.25,
+    "cams_hc": 11.91,
+    "hgb_full_forecast": 8.7,
+    "bias": -4.55
+   },
+   "2026-07": {
+    "n": 1376,
+    "tb_thuc": 23.7,
+    "giu_nguyen": 6.43,
+    "cams_hc": 10.5,
+    "hgb_full_forecast": 5.28,
+    "bias": 0.6
+   },
+   "2026-08": {
+    "n": 1451,
+    "tb_thuc": 24.6,
+    "giu_nguyen": 4.83,
+    "cams_hc": 11.26,
+    "hgb_full_forecast": 4.51,
+    "bias": 0.22
+   },
+   "2026-09": {
+    "n": 1433,
+    "tb_thuc": 32.6,
+    "giu_nguyen": 7.8,
+    "cams_hc": 6.73,
+    "hgb_full_forecast": 6.4,
+    "bias": 0.04
+   },
+   "2026-10": {
+    "n": 1458,
+    "tb_thuc": 40.2,
+    "giu_nguyen": 7.97,
+    "cams_hc": 9.75,
+    "hgb_full_forecast": 6.29,
+    "bias": -1.87
+   },
+   "2026-11": {
+    "n": 1162,
+    "tb_thuc": 27.4,
+    "giu_nguyen": 9.72,
+    "cams_hc": 7.02,
+    "hgb_full_forecast": 6.68,
+    "bias": 3.14
+   }
+  },
+  "theo_muc": {
+   "<25": {
+    "n": 19880,
+    "mae": 6.34,
+    "bias": 5.38
+   },
+   "25–50": {
+    "n": 25584,
+    "mae": 7.18,
+    "bias": 2.03
+   },
+   "50–80": {
+    "n": 10126,
+    "mae": 11.63,
+    "bias": -0.06
+   },
+   "80–150": {
+    "n": 4371,
+    "mae": 15.97,
+    "bias": -8.48
+   },
+   ">150": {
+    "n": 144,
+    "mae": 45.81,
+    "bias": -45.81
+   }
+  },
+  "vuot_nguong": {
+   "tong": 14641,
+   "bo_sot": 2554,
+   "bo_sot_thieu_tb": 18.1,
+   "sot_gio": 8.18,
+   "sot_blh": 435.52,
+   "sot_mua": 3.11,
+   "sot_y": 59.91,
+   "bat_gio": 6.64,
+   "bat_blh": 441.04,
+   "bat_mua": 0.42,
+   "bat_y": 77.82
+  }
+ },
+ "48": {
+  "theo_tram": {
+   "Đại sứ quán Mỹ": {
+    "n": 2208,
+    "giu_nguyen": 24.99,
+    "cams_hc": 19.52,
+    "hgb_full_forecast": 14.51,
+    "tb_thuc": 54.0
+   },
+   "An Khánh": {
+    "n": 3559,
+    "giu_nguyen": 17.17,
+    "cams_hc": 12.96,
+    "hgb_full_forecast": 10.56,
+    "tb_thuc": 41.3
+   },
+   "Số 46, phố Lưu Quang Vũ": {
+    "n": 8018,
+    "giu_nguyen": 11.26,
+    "cams_hc": 10.28,
+    "hgb_full_forecast": 9.08,
+    "tb_thuc": 29.9
+   },
+   "Cung thiếu nhi": {
+    "n": 757,
+    "giu_nguyen": 18.48,
+    "cams_hc": 9.18,
+    "hgb_full_forecast": 11.62,
+    "tb_thuc": 46.9
+   },
+   "Đào Duy Từ": {
+    "n": 3561,
+    "giu_nguyen": 11.67,
+    "cams_hc": 11.44,
+    "hgb_full_forecast": 7.96,
+    "tb_thuc": 29.2
+   },
+   "Liên Quan": {
+    "n": 297,
+    "giu_nguyen": 20.52,
+    "cams_hc": 8.04,
+    "hgb_full_forecast": 9.38,
+    "tb_thuc": 53.4
+   },
+   "Minh Khai - Bắc Từ Liêm": {
+    "n": 1675,
+    "giu_nguyen": 24.96,
+    "cams_hc": 23.49,
+    "hgb_full_forecast": 17.24,
+    "tb_thuc": 50.9
+   },
+   "Pháp Vân": {
+    "n": 756,
+    "giu_nguyen": 24.45,
+    "cams_hc": 16.53,
+    "hgb_full_forecast": 12.91,
+    "tb_thuc": 58.6
+   },
+   "Sài Sơn": {
+    "n": 682,
+    "giu_nguyen": 22.69,
+    "cams_hc": 16.79,
+    "hgb_full_forecast": 13.02,
+    "tb_thuc": 63.6
+   },
+   "Sóc Sơn": {
+    "n": 1769,
+    "giu_nguyen": 17.57,
+    "cams_hc": 10.2,
+    "hgb_full_forecast": 12.23,
+    "tb_thuc": 36.4
+   },
+   "Vân Đình": {
+    "n": 735,
+    "giu_nguyen": 12.72,
+    "cams_hc": 8.06,
+    "hgb_full_forecast": 10.7,
+    "tb_thuc": 38.5
+   },
+   "Vân Hà": {
+    "n": 3446,
+    "giu_nguyen": 18.74,
+    "cams_hc": 15.37,
+    "hgb_full_forecast": 11.8,
+    "tb_thuc": 43.6
+   },
+   "Xuân Mai": {
+    "n": 1713,
+    "giu_nguyen": 22.05,
+    "cams_hc": 18.44,
+    "hgb_full_forecast": 13.27,
+    "tb_thuc": 53.2
+   },
+   "556 Nguyễn Văn Cừ": {
+    "n": 7383,
+    "giu_nguyen": 16.16,
+    "cams_hc": 14.4,
+    "hgb_full_forecast": 11.76,
+    "tb_thuc": 44.6
+   },
+   "Công viên Nhân Chính - Khuất Duy Tiến": {
+    "n": 11434,
+    "giu_nguyen": 12.1,
+    "cams_hc": 9.84,
+    "hgb_full_forecast": 8.43,
+    "tb_thuc": 32.4
+   },
+   "Số 1 đường Giải Phóng - phường Bạch Mai - ĐHBK ": {
+    "n": 10812,
+    "giu_nguyen": 15.56,
+    "cams_hc": 14.53,
+    "hgb_full_forecast": 10.57,
+    "tb_thuc": 39.5
+   }
+  },
+  "theo_thang": {
+   "2025-01": {
+    "n": 7981,
+    "tb_thuc": 60.2,
+    "giu_nguyen": 22.21,
+    "cams_hc": 17.79,
+    "hgb_full_forecast": 14.07,
+    "bias": 7.78
+   },
+   "2025-02": {
+    "n": 4975,
+    "tb_thuc": 39.2,
+    "giu_nguyen": 23.28,
+    "cams_hc": 14.07,
+    "hgb_full_forecast": 13.4,
+    "bias": 3.33
+   },
+   "2025-03": {
+    "n": 4438,
+    "tb_thuc": 37.7,
+    "giu_nguyen": 18.18,
+    "cams_hc": 9.94,
+    "hgb_full_forecast": 10.69,
+    "bias": 5.58
+   },
+   "2025-04": {
+    "n": 2982,
+    "tb_thuc": 39.1,
+    "giu_nguyen": 11.69,
+    "cams_hc": 11.86,
+    "hgb_full_forecast": 8.54,
+    "bias": 1.21
+   },
+   "2025-05": {
+    "n": 3161,
+    "tb_thuc": 22.6,
+    "giu_nguyen": 8.69,
+    "cams_hc": 11.47,
+    "hgb_full_forecast": 8.5,
+    "bias": 3.31
+   },
+   "2025-06": {
+    "n": 1159,
+    "tb_thuc": 19.5,
+    "giu_nguyen": 5.12,
+    "cams_hc": 14.18,
+    "hgb_full_forecast": 5.56,
+    "bias": 4.06
+   },
+   "2025-07": {
+    "n": 2561,
+    "tb_thuc": 29.1,
+    "giu_nguyen": 11.24,
+    "cams_hc": 13.92,
+    "hgb_full_forecast": 8.52,
+    "bias": -2.73
+   },
+   "2025-08": {
+    "n": 2674,
+    "tb_thuc": 24.8,
+    "giu_nguyen": 8.99,
+    "cams_hc": 10.54,
+    "hgb_full_forecast": 6.28,
+    "bias": 0.85
+   },
+   "2025-09": {
+    "n": 2675,
+    "tb_thuc": 26.0,
+    "giu_nguyen": 7.94,
+    "cams_hc": 10.29,
+    "hgb_full_forecast": 7.17,
+    "bias": 3.98
+   },
+   "2025-10": {
+    "n": 2913,
+    "tb_thuc": 30.0,
+    "giu_nguyen": 14.85,
+    "cams_hc": 8.2,
+    "hgb_full_forecast": 9.88,
+    "bias": 1.25
+   },
+   "2025-11": {
+    "n": 2366,
+    "tb_thuc": 40.6,
+    "giu_nguyen": 19.11,
+    "cams_hc": 16.17,
+    "hgb_full_forecast": 10.57,
+    "bias": -2.03
+   },
+   "2025-12": {
+    "n": 1767,
+    "tb_thuc": 67.5,
+    "giu_nguyen": 27.22,
+    "cams_hc": 29.09,
+    "hgb_full_forecast": 19.84,
+    "bias": -8.18
+   },
+   "2026-01": {
+    "n": 2161,
+    "tb_thuc": 65.5,
+    "giu_nguyen": 25.71,
+    "cams_hc": 28.69,
+    "hgb_full_forecast": 16.73,
+    "bias": -6.36
+   },
+   "2026-02": {
+    "n": 2279,
+    "tb_thuc": 46.7,
+    "giu_nguyen": 18.18,
+    "cams_hc": 15.77,
+    "hgb_full_forecast": 14.66,
+    "bias": -5.88
+   },
+   "2026-03": {
+    "n": 2446,
+    "tb_thuc": 34.1,
+    "giu_nguyen": 13.91,
+    "cams_hc": 6.08,
+    "hgb_full_forecast": 9.23,
+    "bias": 3.42
+   },
+   "2026-04": {
+    "n": 2302,
+    "tb_thuc": 41.3,
+    "giu_nguyen": 12.14,
+    "cams_hc": 7.15,
+    "hgb_full_forecast": 9.07,
+    "bias": -1.84
+   },
+   "2026-05": {
+    "n": 2145,
+    "tb_thuc": 29.1,
+    "giu_nguyen": 9.36,
+    "cams_hc": 7.64,
+    "hgb_full_forecast": 7.86,
+    "bias": -3.51
+   },
+   "2026-06": {
+    "n": 1146,
+    "tb_thuc": 33.1,
+    "giu_nguyen": 10.19,
+    "cams_hc": 11.86,
+    "hgb_full_forecast": 9.78,
+    "bias": -5.71
+   },
+   "2026-07": {
+    "n": 1316,
+    "tb_thuc": 23.9,
+    "giu_nguyen": 9.78,
+    "cams_hc": 10.67,
+    "hgb_full_forecast": 6.54,
+    "bias": -0.59
+   },
+   "2026-08": {
+    "n": 1379,
+    "tb_thuc": 25.2,
+    "giu_nguyen": 6.01,
+    "cams_hc": 11.15,
+    "hgb_full_forecast": 4.61,
+    "bias": 0.95
+   },
+   "2026-09": {
+    "n": 1433,
+    "tb_thuc": 32.1,
+    "giu_nguyen": 12.25,
+    "cams_hc": 6.76,
+    "hgb_full_forecast": 7.76,
+    "bias": 1.22
+   },
+   "2026-10": {
+    "n": 1458,
+    "tb_thuc": 40.2,
+    "giu_nguyen": 12.05,
+    "cams_hc": 9.73,
+    "hgb_full_forecast": 7.19,
+    "bias": -1.63
+   },
+   "2026-11": {
+    "n": 1088,
+    "tb_thuc": 27.7,
+    "giu_nguyen": 11.86,
+    "cams_hc": 7.23,
+    "hgb_full_forecast": 9.9,
+    "bias": 7.06
+   }
+  },
+  "theo_muc": {
+   "<25": {
+    "n": 19481,
+    "mae": 8.79,
+    "bias": 8.08
+   },
+   "25–50": {
+    "n": 25231,
+    "mae": 8.1,
+    "bias": 1.76
+   },
+   "50–80": {
+    "n": 9896,
+    "mae": 14.3,
+    "bias": -3.7
+   },
+   "80–150": {
+    "n": 4075,
+    "mae": 23.3,
+    "bias": -18.19
+   },
+   ">150": {
+    "n": 122,
+    "mae": 66.3,
+    "bias": -66.19
+   }
+  },
+  "vuot_nguong": {
+   "tong": 14093,
+   "bo_sot": 3758,
+   "bo_sot_thieu_tb": 22.1,
+   "sot_gio": 7.78,
+   "sot_blh": 429.81,
+   "sot_mua": 2.48,
+   "sot_y": 62.21,
+   "bat_gio": 6.65,
+   "bat_blh": 444.97,
+   "bat_mua": 0.32,
+   "bat_y": 78.37
+  }
+ },
+ "72": {
+  "theo_tram": {
+   "Đại sứ quán Mỹ": {
+    "n": 2184,
+    "giu_nguyen": 29.76,
+    "cams_hc": 19.23,
+    "hgb_full_forecast": 14.67,
+    "tb_thuc": 53.3
+   },
+   "An Khánh": {
+    "n": 3543,
+    "giu_nguyen": 19.81,
+    "cams_hc": 12.9,
+    "hgb_full_forecast": 10.76,
+    "tb_thuc": 40.8
+   },
+   "Số 46, phố Lưu Quang Vũ": {
+    "n": 8015,
+    "giu_nguyen": 13.12,
+    "cams_hc": 10.3,
+    "hgb_full_forecast": 9.25,
+    "tb_thuc": 29.8
+   },
+   "Cung thiếu nhi": {
+    "n": 733,
+    "giu_nguyen": 22.98,
+    "cams_hc": 8.7,
+    "hgb_full_forecast": 14.02,
+    "tb_thuc": 46.0
+   },
+   "Đào Duy Từ": {
+    "n": 3545,
+    "giu_nguyen": 13.45,
+    "cams_hc": 11.62,
+    "hgb_full_forecast": 8.76,
+    "tb_thuc": 28.9
+   },
+   "Liên Quan": {
+    "n": 273,
+    "giu_nguyen": 23.76,
+    "cams_hc": 7.52,
+    "hgb_full_forecast": 13.44,
+    "tb_thuc": 51.2
+   },
+   "Minh Khai - Bắc Từ Liêm": {
+    "n": 1542,
+    "giu_nguyen": 28.49,
+    "cams_hc": 23.83,
+    "hgb_full_forecast": 18.1,
+    "tb_thuc": 51.1
+   },
+   "Pháp Vân": {
+    "n": 732,
+    "giu_nguyen": 30.51,
+    "cams_hc": 15.7,
+    "hgb_full_forecast": 14.71,
+    "tb_thuc": 56.6
+   },
+   "Sài Sơn": {
+    "n": 665,
+    "giu_nguyen": 27.09,
+    "cams_hc": 15.38,
+    "hgb_full_forecast": 13.65,
+    "tb_thuc": 61.5
+   },
+   "Sóc Sơn": {
+    "n": 1745,
+    "giu_nguyen": 20.99,
+    "cams_hc": 10.1,
+    "hgb_full_forecast": 12.74,
+    "tb_thuc": 36.1
+   },
+   "Vân Đình": {
+    "n": 711,
+    "giu_nguyen": 16.67,
+    "cams_hc": 7.91,
+    "hgb_full_forecast": 13.45,
+    "tb_thuc": 37.9
+   },
+   "Vân Hà": {
+    "n": 3412,
+    "giu_nguyen": 21.6,
+    "cams_hc": 15.34,
+    "hgb_full_forecast": 11.35,
+    "tb_thuc": 43.3
+   },
+   "Xuân Mai": {
+    "n": 1689,
+    "giu_nguyen": 26.94,
+    "cams_hc": 17.87,
+    "hgb_full_forecast": 14.09,
+    "tb_thuc": 52.6
+   },
+   "556 Nguyễn Văn Cừ": {
+    "n": 7339,
+    "giu_nguyen": 18.23,
+    "cams_hc": 14.37,
+    "hgb_full_forecast": 12.01,
+    "tb_thuc": 44.6
+   },
+   "Công viên Nhân Chính - Khuất Duy Tiến": {
+    "n": 11360,
+    "giu_nguyen": 14.05,
+    "cams_hc": 9.87,
+    "hgb_full_forecast": 9.11,
+    "tb_thuc": 32.5
+   },
+   "Số 1 đường Giải Phóng - phường Bạch Mai - ĐHBK ": {
+    "n": 10696,
+    "giu_nguyen": 18.25,
+    "cams_hc": 14.57,
+    "hgb_full_forecast": 11.87,
+    "tb_thuc": 39.6
+   }
+  },
+  "theo_thang": {
+   "2025-01": {
+    "n": 7885,
+    "tb_thuc": 57.6,
+    "giu_nguyen": 26.96,
+    "cams_hc": 16.65,
+    "hgb_full_forecast": 15.26,
+    "bias": 8.49
+   },
+   "2025-02": {
+    "n": 4893,
+    "tb_thuc": 40.0,
+    "giu_nguyen": 28.69,
+    "cams_hc": 14.24,
+    "hgb_full_forecast": 13.86,
+    "bias": 1.5
+   },
+   "2025-03": {
+    "n": 4390,
+    "tb_thuc": 38.9,
+    "giu_nguyen": 20.25,
+    "cams_hc": 10.56,
+    "hgb_full_forecast": 10.47,
+    "bias": 3.98
+   },
+   "2025-04": {
+    "n": 2974,
+    "tb_thuc": 37.6,
+    "giu_nguyen": 12.14,
+    "cams_hc": 12.29,
+    "hgb_full_forecast": 8.82,
+    "bias": 0.01
+   },
+   "2025-05": {
+    "n": 3137,
+    "tb_thuc": 22.1,
+    "giu_nguyen": 8.75,
+    "cams_hc": 11.48,
+    "hgb_full_forecast": 8.42,
+    "bias": 2.69
+   },
+   "2025-06": {
+    "n": 1063,
+    "tb_thuc": 19.9,
+    "giu_nguyen": 5.45,
+    "cams_hc": 14.93,
+    "hgb_full_forecast": 5.25,
+    "bias": 4.19
+   },
+   "2025-07": {
+    "n": 2544,
+    "tb_thuc": 29.4,
+    "giu_nguyen": 12.76,
+    "cams_hc": 13.72,
+    "hgb_full_forecast": 8.81,
+    "bias": -4.11
+   },
+   "2025-08": {
+    "n": 2619,
+    "tb_thuc": 24.5,
+    "giu_nguyen": 7.76,
+    "cams_hc": 10.44,
+    "hgb_full_forecast": 6.16,
+    "bias": 1.68
+   },
+   "2025-09": {
+    "n": 2699,
+    "tb_thuc": 26.0,
+    "giu_nguyen": 9.67,
+    "cams_hc": 10.22,
+    "hgb_full_forecast": 7.34,
+    "bias": 2.6
+   },
+   "2025-10": {
+    "n": 2913,
+    "tb_thuc": 29.5,
+    "giu_nguyen": 17.42,
+    "cams_hc": 8.18,
+    "hgb_full_forecast": 10.87,
+    "bias": 2.06
+   },
+   "2025-11": {
+    "n": 2342,
+    "tb_thuc": 42.4,
+    "giu_nguyen": 23.62,
+    "cams_hc": 16.44,
+    "hgb_full_forecast": 12.98,
+    "bias": -2.01
+   },
+   "2025-12": {
+    "n": 1719,
+    "tb_thuc": 66.3,
+    "giu_nguyen": 31.68,
+    "cams_hc": 28.72,
+    "hgb_full_forecast": 21.18,
+    "bias": -10.38
+   },
+   "2026-01": {
+    "n": 2167,
+    "tb_thuc": 66.9,
+    "giu_nguyen": 31.58,
+    "cams_hc": 28.79,
+    "hgb_full_forecast": 18.53,
+    "bias": -8.51
+   },
+   "2026-02": {
+    "n": 2312,
+    "tb_thuc": 45.1,
+    "giu_nguyen": 22.88,
+    "cams_hc": 15.42,
+    "hgb_full_forecast": 14.74,
+    "bias": -7.29
+   },
+   "2026-03": {
+    "n": 2484,
+    "tb_thuc": 34.8,
+    "giu_nguyen": 15.61,
+    "cams_hc": 5.96,
+    "hgb_full_forecast": 8.69,
+    "bias": 2.18
+   },
+   "2026-04": {
+    "n": 2304,
+    "tb_thuc": 40.8,
+    "giu_nguyen": 12.78,
+    "cams_hc": 7.49,
+    "hgb_full_forecast": 9.83,
+    "bias": -3.33
+   },
+   "2026-05": {
+    "n": 2136,
+    "tb_thuc": 29.2,
+    "giu_nguyen": 10.0,
+    "cams_hc": 7.4,
+    "hgb_full_forecast": 8.56,
+    "bias": -3.16
+   },
+   "2026-06": {
+    "n": 1061,
+    "tb_thuc": 34.4,
+    "giu_nguyen": 12.54,
+    "cams_hc": 13.49,
+    "hgb_full_forecast": 11.51,
+    "bias": -6.7
+   },
+   "2026-07": {
+    "n": 1265,
+    "tb_thuc": 23.5,
+    "giu_nguyen": 9.87,
+    "cams_hc": 10.89,
+    "hgb_full_forecast": 6.96,
+    "bias": -0.79
+   },
+   "2026-08": {
+    "n": 1361,
+    "tb_thuc": 25.8,
+    "giu_nguyen": 7.11,
+    "cams_hc": 11.25,
+    "hgb_full_forecast": 5.25,
+    "bias": -0.47
+   },
+   "2026-09": {
+    "n": 1433,
+    "tb_thuc": 31.6,
+    "giu_nguyen": 14.63,
+    "cams_hc": 6.4,
+    "hgb_full_forecast": 9.33,
+    "bias": -0.18
+   },
+   "2026-10": {
+    "n": 1458,
+    "tb_thuc": 40.3,
+    "giu_nguyen": 14.64,
+    "cams_hc": 9.82,
+    "hgb_full_forecast": 9.12,
+    "bias": -2.67
+   },
+   "2026-11": {
+    "n": 1025,
+    "tb_thuc": 27.6,
+    "giu_nguyen": 12.43,
+    "cams_hc": 7.35,
+    "hgb_full_forecast": 9.13,
+    "bias": 5.45
+   }
+  },
+  "theo_muc": {
+   "<25": {
+    "n": 19299,
+    "mae": 9.48,
+    "bias": 8.84
+   },
+   "25–50": {
+    "n": 25112,
+    "mae": 8.31,
+    "bias": 0.95
+   },
+   "50–80": {
+    "n": 9797,
+    "mae": 15.14,
+    "bias": -5.89
+   },
+   "80–150": {
+    "n": 3863,
+    "mae": 26.03,
+    "bias": -23.19
+   },
+   ">150": {
+    "n": 113,
+    "mae": 84.35,
+    "bias": -84.35
+   }
+  },
+  "vuot_nguong": {
+   "tong": 13773,
+   "bo_sot": 4459,
+   "bo_sot_thieu_tb": 23.2,
+   "sot_gio": 7.53,
+   "sot_blh": 417.1,
+   "sot_mua": 2.23,
+   "sot_y": 62.97,
+   "bat_gio": 6.66,
+   "bat_blh": 449.24,
+   "bat_mua": 0.29,
+   "bat_y": 78.63
+  }
+ }
+}
