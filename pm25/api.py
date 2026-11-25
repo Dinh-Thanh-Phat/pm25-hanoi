@@ -8,11 +8,13 @@ import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from . import config, dataset, history, live
 
 app = FastAPI(title="Bụi mịn Hà Nội — dự báo 3 ngày")
 STATIC = Path(__file__).parent / "static"
+app.mount("/img", StaticFiles(directory=STATIC / "img"), name="img")
 
 
 @app.get("/")

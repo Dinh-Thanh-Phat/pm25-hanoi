@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
-  --night:#101b24; --night2:#16242f; --on-night:#eef3f5; --on-night-m:rgba(238,243,245,.74); --glass:rgba(16,27,36,.46); --glass-line:rgba(238,243,245,.16);
+  --night:#101b24; --night2:#16242f; --on-night:#eef3f5; --on-night-m:rgba(238,243,245,.74); --glass:rgba(10,17,23,.62); --glass-line:rgba(238,243,245,.16);
   --bg:#e7edf0; --paper:#f8fafb; --ink:#14212a; --muted:#52626b; --line:#cbd6db; --soft:#dbe4e8; --focus:#1f6fb2;
   --q1:#3d9a4b; --q2:#d8b21d; --q3:#e9822b; --q4:#d23b2d; --q5:#80408f; --q6:#6b1c2e;
   --q1t:#fff; --q2t:#1d1a08; --q3t:#1f1207; --q4t:#fff; --q5t:#fff; --q6t:#fff;
@@ -39,17 +39,56 @@ h1,h2,h3{font-family:var(--display);font-weight:800;font-stretch:88%;letter-spac
 /* ================= HERO ================= */
 .hero{position:relative;color:var(--on-night);background:var(--night);overflow:hidden;isolation:isolate;
   min-height:min(940px,100svh);display:flex;flex-direction:column}
-.sky{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,var(--sky-a,#14283a) 0%,var(--sky-b,#3f6378) 62%,var(--sky-c,#8fa9b6) 100%);
-  transition:--sky-a 1.4s,--sky-b 1.4s,--sky-c 1.4s}
-@property --sky-a{syntax:"<color>";inherits:true;initial-value:#14283a}
-@property --sky-b{syntax:"<color>";inherits:true;initial-value:#3f6378}
-@property --sky-c{syntax:"<color>";inherits:true;initial-value:#8fa9b6}
-#city{position:absolute;left:0;right:0;bottom:0;width:100%;height:58%;z-index:-1;display:block}
-#city .fog{transition:opacity 1.4s ease}
-.drift{animation:drift 60s linear infinite alternate}
-@keyframes drift{from{transform:translateX(-3%)}to{transform:translateX(3%)}}
-.hero-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(12,20,27,.78) 0%,rgba(12,20,27,.5) 42%,rgba(12,20,27,.08) 75%),
-  linear-gradient(180deg,rgba(12,20,27,0) 55%,rgba(12,20,27,.55) 100%)}
+/* ảnh thật, chuyển cảnh chéo + zoom chậm; không làm mờ ảnh */
+.slides{position:absolute;inset:0;z-index:-2;background:var(--night)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease;overflow:hidden}
+.slide.on{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:var(--ox,50%) var(--oy,50%)}
+.slide.on img{animation:kb 9s linear forwards}
+@keyframes kb{from{transform:scale(1.0)}to{transform:scale(1.08)}}
+.hero-shade{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(10,17,23,.84) 0%,rgba(10,17,23,.66) 30%,rgba(10,17,23,.18) 58%,rgba(10,17,23,0) 74%),
+  linear-gradient(180deg,rgba(10,17,23,.55) 0%,rgba(10,17,23,0) 16%,rgba(10,17,23,0) 70%,rgba(10,17,23,.7) 100%)}
+.photo{position:absolute;right:calc(max(0px, (100% - var(--maxw)) / 2) + var(--gut));bottom:20px;display:flex;align-items:center;gap:14px;font-size:12.5px;color:var(--on-night-m);z-index:1;max-width:calc(100% - 2*var(--gut))}
+.photo p{margin:0;text-align:right;text-shadow:0 1px 6px rgba(0,0,0,.6);min-width:0}
+.photo p b{color:var(--on-night);font-weight:500;display:block;font-size:13.5px}
+.photo a{color:inherit}
+.dots{display:flex;gap:6px;flex:none}
+.dots button{all:unset;cursor:pointer;width:26px;height:4px;border-radius:2px;background:rgba(255,255,255,.3);position:relative;overflow:hidden}
+.dots button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.dots button i{position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
+.dots button.on i{animation:prog var(--dur,7s) linear forwards}
+.dots button.past i{transform:scaleX(1)}
+.paused .dots button.on i{animation-play-state:paused}
+@keyframes prog{to{transform:scaleX(1)}}
+.pause{all:unset;cursor:pointer;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--glass-line);background:rgba(10,17,23,.4);flex:none}
+.pause:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+/* màn mở đầu: một chuỗi xuất hiện duy nhất */
+.intro .top,.intro .lead,.intro .big,.intro .lvl-pill,.intro .advice,.intro .same,.intro .days button,.intro .why li,.intro .pick,.intro .panel{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.intro .lead{animation-delay:.1s}.intro .big{animation-delay:.18s}.intro .lvl-pill{animation-delay:.5s}.intro .advice{animation-delay:.58s}.intro .same{animation-delay:.64s}
+.intro .days button:nth-child(1){animation-delay:.7s}.intro .days button:nth-child(2){animation-delay:.78s}.intro .days button:nth-child(3){animation-delay:.86s}
+.intro .why li:nth-child(1){animation-delay:.95s}.intro .why li:nth-child(2){animation-delay:1.03s}.intro .why li:nth-child(3){animation-delay:1.11s}
+.intro .pick{animation-delay:1.18s}.intro .panel{animation-delay:.35s}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.lvl-pill i{transition:background .5s,box-shadow .5s}
+.trend-line{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 1.4s .5s cubic-bezier(.4,0,.2,1) forwards}
+.fc-blk{opacity:0;animation:pop .6s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hero .now-dot{animation:pulse 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulse{0%{stroke-width:2;stroke-opacity:.9}70%{stroke-width:14;stroke-opacity:0}100%{stroke-width:14;stroke-opacity:0}}
+
+/* hiện dần khi cuộn tới: chỉ cho biểu đồ, để số liệu "mọc" lên */
+.rv .bar{width:0!important}
+.rv #months rect.mb{transform:scaleY(0)}
+#months rect.mb{transform-box:fill-box;transform-origin:bottom;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv #cal .row{clip-path:inset(0 100% 0 0)}
+#cal .row{transition:clip-path 1.1s cubic-bezier(.4,0,.2,1)}
+.rv .lvbars .track i{transform:scaleX(0)}
+.lvbars .track i{transition:transform .8s cubic-bezier(.2,.7,.2,1);transform-origin:var(--o,left)}
+.rv #bt path.ln{stroke-dashoffset:var(--len)}
+#bt path.ln{stroke-dasharray:var(--len);transition:stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1)}
 
 .top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 0}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
@@ -97,7 +136,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;font-stretch:88%;letter-spac
   border:1px solid var(--glass-line);border-radius:10px;padding:8px 36px 8px 12px;max-width:100%;cursor:pointer}
 .pick select option{color:#14212a}
 
-.panel{background:var(--glass);border:1px solid var(--glass-line);border-radius:20px;padding:18px 18px 12px;backdrop-filter:blur(10px) saturate(1.1);-webkit-backdrop-filter:blur(10px) saturate(1.1);
+.panel{background:var(--glass);border:1px solid var(--glass-line);border-radius:20px;padding:18px 18px 12px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   margin-top:clamp(0px,4vh,48px)}
 .panel h2{font-size:19px;font-stretch:92%}
 .panel .sub{font-size:13.5px;color:var(--on-night-m);margin:4px 0 8px}
@@ -106,7 +145,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;font-stretch:88%;letter-spac
 .legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--on-night-m);margin:4px 0 2px}
 .legend i{display:inline-block;vertical-align:middle;margin-right:6px}
 .err{background:#fbe9e7;color:#7a1f14;border-radius:10px;padding:10px 14px;margin:0 0 12px;font-size:14px}
-.skip-scroll{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-size:13px;color:var(--on-night-m);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:4px}
+.skip-scroll{position:absolute;left:calc(max(0px, (100% - var(--maxw)) / 2) + var(--gut));bottom:20px;z-index:1;font-size:13px;color:var(--on-night-m);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:4px}
 
 /* chuyển hero → nền sáng */
 .fade{height:150px;margin-top:-1px;background:linear-gradient(180deg,#0c141b 0%,#1a2731 12%,#2f3f4a 24%,#4c5d68 36%,#6d7d87 48%,#8e9ca4 60%,#adb9bf 72%,#c7d0d5 83%,#dbe2e6 93%,var(--bg) 100%)}
@@ -114,7 +153,8 @@ h1,h2,h3{font-family:var(--display);font-weight:800;font-stretch:88%;letter-spac
 :root[data-theme="dark"] .fade{background:linear-gradient(180deg,#0c141b,var(--bg))}
 
 /* ================= SECTIONS ================= */
-section.band{padding:22px 0 64px}
+section.band{padding-top:28px;padding-bottom:72px}
+section.band.wrap{padding-left:var(--gut);padding-right:var(--gut)}
 .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 48px;align-items:end;margin-bottom:26px}
 .head h2{font-size:clamp(32px,4.2vw,52px);font-stretch:80%}
 .head p{margin:0;color:var(--muted);max-width:60ch}
@@ -159,7 +199,7 @@ section.band{padding:22px 0 64px}
 
 /* độ tin cậy */
 .tabs{display:inline-flex;gap:4px;padding:4px;border-radius:12px;background:var(--soft);margin:0 0 16px}
-.tabs button{all:unset;cursor:pointer;font-size:14px;padding:7px 14px;border-radius:9px}
+.tabs button{all:unset;cursor:pointer;font-size:14px;padding:7px 14px;border-radius:9px;white-space:nowrap;text-align:center}
 .tabs button[aria-pressed="true"]{background:var(--paper);box-shadow:0 1px 3px rgba(0,0,0,.12);font-weight:500}
 .tabs button:focus-visible{outline:2px solid var(--focus)}
 .ev-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px}
@@ -186,7 +226,7 @@ section.band{padding:22px 0 64px}
 table{border-collapse:collapse;width:100%;font-size:14px}
 th,td{padding:8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
 th:first-child,td:first-child{text-align:left;white-space:normal}
-th{font-weight:500;color:var(--muted)}
+th{font-weight:500;color:var(--muted);white-space:normal;vertical-align:bottom;line-height:1.3}
 .tbl{overflow-x:auto}
 details summary{cursor:pointer;font-size:14px;font-weight:500;margin-top:16px}
 
@@ -206,44 +246,65 @@ footer{color:var(--muted);font-size:13px;padding:8px 0 48px}
 /* ================= responsive ================= */
 @media (max-width:1100px){
   .top nav{display:none}
-  .hero-grid{grid-template-columns:1fr;padding-bottom:120px}
+  .hero{min-height:0}
+  .slides{bottom:auto;height:min(80svh,760px)}
+  .slides:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,17,23,.5) 0%,rgba(10,17,23,0) 12%,rgba(10,17,23,0) 22%,rgba(10,17,23,.72) 40%,rgba(10,17,23,.8) 70%,var(--night) 100%)}
+  .hero-shade{display:none}
+  .hero-grid{text-shadow:0 1px 8px rgba(0,0,0,.45)}
+  .hero-grid{grid-template-columns:minmax(0,1fr);padding-top:min(26svh,230px);padding-bottom:28px}
   .panel{margin-top:0}
+  .skip-scroll{display:none}
+  .photo{position:static;margin:0 var(--gut) 22px;justify-content:space-between;max-width:none}
+  .photo p{text-align:left}
   .steps{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media (max-width:900px){
-  .head{grid-template-columns:1fr}
-  .st-grid,.hist-grid,.ev-grid{grid-template-columns:1fr}
-  #map{height:380px}
-  .hist-top{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .trio{grid-template-columns:1fr}
+  .head{grid-template-columns:minmax(0,1fr);gap:12px}
+  .st-grid,.hist-grid,.ev-grid{grid-template-columns:minmax(0,1fr)}
+  #map{height:400px}
+  .hist-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 16px}
+  .trio{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:560px){
-  .big .n{font-size:132px}
+  .big .n{font-size:118px}
+  .lvl-pill{margin-top:12px}
   .days{gap:6px}
   .days button{padding:8px 9px}
   .days .w{white-space:normal;line-height:1.3}
-  .days .v{font-size:25px}
+  .days .v{font-size:25px;gap:6px}
+  .days .v small{display:none}
   .card{padding:16px;border-radius:16px}
-  .bars{grid-template-columns:1fr 46px}
+  .panel{padding:14px 12px 10px;border-radius:16px}
+  .bars{grid-template-columns:minmax(0,1fr) 46px}
   .bars .lab{grid-column:1/-1;margin-bottom:-5px}
-  .facts{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr}
+  .facts{grid-template-columns:minmax(0,1fr)}
+  .steps{grid-template-columns:minmax(0,1fr)}
   .steps li{padding-right:0}
+  .st-row{padding:12px 4px}
   .st-row .fc span{width:32px;height:32px;font-size:15px}
+  .fc-h{padding-right:4px}
   .fc-h span{width:32px}
   #map{height:320px}
-  .hero{min-height:auto}
+  .stat b{font-size:34px}
+  .tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
+  .tabs button{padding:7px 4px;font-size:13.5px}
+  #years table{font-size:13.5px}
+  #years th,#years td{padding:8px 6px}
+  .lvbars{grid-template-columns:62px minmax(0,1fr) 48px}
+  .end{padding:20px}
+  .dots button{width:18px}
 }
+.wait .hero-grid>*{opacity:0}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
+  .trend-line{stroke-dashoffset:0!important}.fc-blk{opacity:1!important}
   *{transition:none!important;animation:none!important}
 }
 </style>
 </head>
-<body>
+<body class="wait">
 <header class="hero" id="top">
-  <div class="sky" id="sky"></div>
-  <svg id="city" viewBox="0 0 1600 520" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+  <div class="slides" id="slides" aria-hidden="true"></div>
   <div class="hero-shade"></div>
   <div class="wrap" style="width:100%">
     <div class="top">
@@ -277,6 +338,11 @@ footer{color:var(--muted);font-size:13px;padding:8px 0 48px}
     </div>
   </div>
   <a class="skip-scroll" href="#tram"><span>Xem từng trạm</span><svg width="14" height="9" viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+  <div class="photo" id="photo">
+    <p id="cap"></p>
+    <div class="dots" id="dots" role="group" aria-label="Chọn ảnh nền"></div>
+    <button type="button" class="pause" id="pause" aria-label="Dừng chuyển ảnh"></button>
+  </div>
 </header>
 <div class="fade" aria-hidden="true"></div>
 
@@ -381,6 +447,7 @@ footer{color:var(--muted);font-size:13px;padding:8px 0 48px}
 </main>
 <footer class="wrap">
   Số đo: mạng quan trắc Hà Nội và trạm Đại sứ quán Mỹ, lấy qua OpenAQ. Thời tiết, dự báo thời tiết và CAMS: Open-Meteo. Màu theo thang VN_AQI cho PM2.5 trung bình 24 giờ.
+  Ảnh nền: Wikimedia Commons, giấy phép tự do; tác giả và giấy phép ghi dưới từng ảnh.
   Đây là đồ án học tập, không thay cho thông báo chính thức của cơ quan môi trường.
 </footer>
 <div class="tip" id="tip" role="tooltip"></div>
@@ -406,51 +473,60 @@ const dmy = d => d.getDate() + "/" + (d.getMonth() + 1);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
 let LIVE = null, RES = null, HIST = null, META = null, cur = "all", DAY = "24", H = "24", map = null, marks = {}, showAll = false;
 
-/* ---------- cảnh thành phố trong sương bụi (vẽ một lần, chỉ đổi độ dày sương) ---------- */
-function rng(seed) { return () => (seed = (seed * 16807) % 2147483647) / 2147483647; }
-function drawCity() {
-  const r = rng(7), W = 1600, Hh = 520;
-  const layer = (base, minH, maxH, wMin, wMax, fill, towers) => {
-    let x = -20, d = `M-20 ${Hh}`;
-    while (x < W + 20) {
-      const w = wMin + r() * (wMax - wMin), h = minH + Math.pow(r(), 1.6) * (maxH - minH);
-      const y = base - h;
-      d += ` L${x.toFixed(0)} ${y.toFixed(0)} L${(x + w).toFixed(0)} ${y.toFixed(0)}`;
-      if (r() < .18) d += ` L${(x + w).toFixed(0)} ${(y + 10 + r() * 20).toFixed(0)}`;
-      x += w;
-    }
-    for (const [tx, tw, th] of towers) d += ` M${tx} ${base} L${tx} ${base - th + 18} L${tx + tw / 2} ${base - th} L${tx + tw} ${base - th + 18} L${tx + tw} ${base} Z`;
-    return `<path d="${d} L${W + 20} ${Hh} Z" fill="${fill}"/>`;
-  };
-  // cầu dàn thép ở lớp gần (khung tam giác lặp lại)
-  let truss = "", bx = 0, by = 452;
-  truss += `<rect x="0" y="${by}" width="${W}" height="6" fill="#0d161d"/>`;
-  for (let i = 0; bx < W; i++, bx += 92) {
-    const top = by - 34;
-    truss += `<path d="M${bx} ${by} Q${bx + 46} ${top - 6} ${bx + 92} ${by}" fill="none" stroke="#0d161d" stroke-width="4"/>`;
-    for (let k = 1; k < 6; k++) { const xx = bx + k * 92 / 6; truss += `<line x1="${xx}" y1="${by}" x2="${xx}" y2="${by - 34 * Math.sin(Math.PI * k / 6) - 4}" stroke="#0d161d" stroke-width="2"/>`; }
-  }
-  $("#city").innerHTML = `
-    <defs><linearGradient id="fogg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--fog,#9fb2bc)" stop-opacity="0"/><stop offset=".55" stop-color="var(--fog,#9fb2bc)" stop-opacity=".9"/><stop offset="1" stop-color="var(--fog,#9fb2bc)"/></linearGradient></defs>
-    <g class="drift">${layer(330, 40, 210, 26, 70, "#3a4d59", [[1040, 46, 300], [300, 34, 250]])}</g>
-    <rect class="fog" id="fog1" x="0" y="80" width="${W}" height="${Hh}" fill="url(#fogg)"/>
-    ${layer(400, 30, 150, 34, 90, "#24343e", [[620, 40, 230]])}
-    <rect class="fog" id="fog2" x="0" y="180" width="${W}" height="${Hh}" fill="url(#fogg)"/>
-    ${layer(470, 18, 70, 50, 120, "#121d25", [])}${truss}
-    <rect class="fog" id="fog3" x="0" y="300" width="${W}" height="${Hh}" fill="url(#fogg)"/>`;
+/* ---------- ảnh nền thật (Wikimedia Commons, giấy phép tự do) ---------- */
+const W_ = "https://commons.wikimedia.org/wiki/File:";
+const PHOTOS = [
+  {src: "/img/hn1.jpg", ten: "Hà Nội nhìn qua sông Hồng", tg: "NKSTTSSHNVN", lic: "CC BY-SA 4.0", url: W_ + "Hanoi_Skyline_-_NKS.jpg"},
+  {src: "/img/hn2.jpg", ten: "Cầu Long Biên", tg: "Quangpraha", lic: "CC0", url: W_ + "Long-bien-bridge-3371615.jpg"},
+  {src: "/img/hn3.jpg", ten: "Xe máy trên phố Hà Nội", tg: "Northboer", lic: "CC BY-SA 3.0", url: W_ + "Hanoi_traffic.jpg"},
+  {src: "/img/hn4.jpg", ten: "Hồ Hoàn Kiếm", tg: "Trung geo", lic: "CC BY-SA 4.0", url: W_ + "Ho_hoan_kiem_toa_nha_vnpt.jpg"},
+  {src: "/img/hn5.jpg", ten: "Hà Nội về đêm, nhìn qua mặt hồ", tg: "cloud.shepherd", lic: "CC BY 2.0", url: W_ + "Hanoi_skyline_(22813421939).jpg"}];
+const ICO_PAUSE = '<svg width="12" height="12" viewBox="0 0 12 12" fill="#eef3f5"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg>';
+const ICO_PLAY = '<svg width="12" height="12" viewBox="0 0 12 12" fill="#eef3f5"><path d="M3 1.5v9l7.5-4.5z"/></svg>';
+let SI = 0, ST = null, PAUSED = RM;
+const replay = el => { el.style.animation = "none"; void el.offsetWidth; el.style.animation = ""; };
+function show(i) {
+  SI = i;
+  document.querySelectorAll(".slide").forEach((s, k) => { s.classList.toggle("on", k === i); if (k === i) replay(s.querySelector("img")); });
+  document.querySelectorAll("#dots button").forEach((b, k) => { b.classList.toggle("on", k === i); b.classList.toggle("past", k < i);
+    k === i ? b.setAttribute("aria-current", "true") : b.removeAttribute("aria-current"); replay(b.querySelector("i")); });
+  const p = PHOTOS[i];
+  $("#cap").innerHTML = `<b>${p.ten}</b>Ảnh: <a href="${p.url}" target="_blank" rel="noopener">${esc(p.tg)}</a>, ${p.lic}`;
 }
-// độ dày sương: 0 (trong) → 1 (rất đục), theo PM2.5
-function setHaze(v) {
-  const d = v == null ? .25 : Math.max(.05, Math.min(1, v / 130));
-  const mix = (a, b) => { const p = x => [1, 3, 5].map(i => parseInt(x.slice(i, i + 2), 16)); const A = p(a), B = p(b);
-    return "#" + A.map((c, i) => Math.round(c + (B[i] - c) * d).toString(16).padStart(2, "0")).join(""); };
-  const s = $(".hero").style;
-  s.setProperty("--sky-a", mix("#132a3d", "#2a2620"));
-  s.setProperty("--sky-b", mix("#3c6580", "#7a6a4c"));
-  s.setProperty("--sky-c", mix("#9cc0cf", "#c9b07a"));
-  $("#city").style.setProperty("--fog", mix("#9fb8c4", "#bfa673"));
-  [["#fog1", .15, .95], ["#fog2", .05, .75], ["#fog3", 0, .42]].forEach(([id, a, b]) => $(id).style.opacity = a + (b - a) * d);
+function restart() {
+  clearInterval(ST);
+  $(".hero").classList.toggle("paused", PAUSED);
+  $("#pause").innerHTML = PAUSED ? ICO_PLAY : ICO_PAUSE;
+  $("#pause").setAttribute("aria-label", PAUSED ? "Tiếp tục chuyển ảnh" : "Dừng chuyển ảnh");
+  if (!PAUSED && !document.hidden) ST = setInterval(() => show((SI + 1) % PHOTOS.length), 7000);
 }
+function slides() {
+  $("#slides").innerHTML = PHOTOS.map((p, i) => `<div class="slide"><img ${i ? "data-src" : 'fetchpriority="high" src'}="${p.src}" alt="" decoding="async"></div>`).join("");
+  $("#dots").innerHTML = PHOTOS.map((p, i) => `<button type="button" aria-label="Ảnh ${i + 1}: ${p.ten}"><i></i></button>`).join("");
+  $("#dots").querySelectorAll("button").forEach((b, i) => b.onclick = () => { show(i); restart(); });
+  $("#pause").onclick = () => { PAUSED = !PAUSED; if (!PAUSED) show(SI); restart(); };
+  const first = $("#slides img"), rest = () => document.querySelectorAll("#slides img[data-src]").forEach(im => { im.src = im.dataset.src; im.removeAttribute("data-src"); });
+  first.complete ? rest() : first.addEventListener("load", rest, {once: true});
+  document.addEventListener("visibilitychange", restart);
+  show(0); restart();
+}
+
+/* ---------- chuyển động số ---------- */
+const ease = k => 1 - Math.pow(1 - k, 3);
+function tween(from, to, ms, cb) { const t0 = performance.now(); const st = now => { const k = Math.min(1, (now - t0) / ms); cb(from + (to - from) * ease(k), k === 1); if (k < 1) requestAnimationFrame(st); }; requestAnimationFrame(st); }
+function countUp(el) {
+  if (RM) return;
+  const t = el.textContent, m = t.match(/\d[\d.,]*/); if (!m || /^(19|20)\d\d$/.test(m[0])) return;
+  const raw = m[0], dec = raw.includes(",") ? raw.split(",")[1].length : 0, n = parseFloat(raw.replace(/\./g, "").replace(",", "."));
+  tween(0, n, 1100, (x, end) => el.textContent = end ? t : t.replace(raw, x.toLocaleString("vi", {minimumFractionDigits: dec, maximumFractionDigits: dec})));
+}
+function reveal() {
+  if (RM || !("IntersectionObserver" in window)) return;
+  const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return;
+    e.target.classList.remove("rv"); e.target.querySelectorAll(".stat b").forEach(countUp); io.unobserve(e.target); }), {threshold: .2});
+  document.querySelectorAll("#lich-su .card, #tin-cay .card, .hist-top").forEach(el => { el.classList.add("rv"); io.observe(el); });
+}
+const width = (sel, min) => Math.max(min, Math.round($(sel).clientWidth));
 
 /* ---------- dữ liệu dự báo ---------- */
 const active = () => LIVE.tram.filter(s => s.hoat_dong);
@@ -463,7 +539,9 @@ const dayName = (i, short) => { const d = dayDate(i); return i === 0 ? (short ? 
 function renderHero() {
   const i = ["24", "48", "72"].indexOf(DAY), v = valOf(DAY), s = station();
   $("#lead").innerHTML = `Bụi mịn PM2.5 trung bình <b>${dayName(i).toLowerCase().replace(/^ngày/, "ngày")}</b>, ${s ? "trạm " + esc(s.ten) : "trung bình " + active().length + " trạm đang báo số"}`;
-  $("#bigN").textContent = fmt(v);
+  const nEl = $("#bigN"), from = +(nEl.dataset.v || 0);
+  nEl.dataset.v = v == null ? 0 : v;
+  if (v == null || RM) nEl.textContent = fmt(v); else tween(from, v, from ? 600 : 1100, x => nEl.textContent = fmt(x));
   const L = v == null ? null : lvl(v);
   $("#lvl").style.setProperty("--lv", L ? css("--q" + L[2]) : "#999");
   $("#lvl span").textContent = L ? L[1] : "Chưa đủ số đo để dự báo";
@@ -482,9 +560,9 @@ function renderHero() {
   $("#days").innerHTML = ["24", "48", "72"].map((k, j) => { const x = valOf(k);
     return `<button type="button" data-k="${k}" aria-pressed="${k === DAY}"><span class="w">${dayName(j, true)}, ${dmy(dayDate(j))}</span>
       <span class="v"><i style="background:${qc(x)}"></i>${fmt(x)}<small>${x == null ? "" : lvl(x)[1]}</small></span></button>`; }).join("");
-  $("#days").querySelectorAll("button").forEach(b => b.onclick = () => { DAY = b.dataset.k; renderHero(); });
+  $("#days").querySelectorAll("button").forEach(b => b.onclick = () => { DAY = b.dataset.k; renderHero(); renderTrend(false);
+    const nb = $(`#days button[data-k="${DAY}"]`); nb && nb.focus(); });
   renderWhy(i);
-  setHaze(v);
 }
 
 function renderWhy(i) {
@@ -509,7 +587,7 @@ function renderPick() {
 }
 
 /* 72h đo + 3 khối dự báo */
-function renderTrend() {
+function renderTrend(anim = true) {
   const s = station();
   let pts;
   if (s) pts = s.chuoi.map(p => [new Date(p.luc).getTime(), p.pm25]);
@@ -518,7 +596,7 @@ function renderTrend() {
   $("#pTitle").textContent = "72 giờ qua và 3 ngày tới" + (s ? "" : ", trung bình các trạm");
   const now = new Date(LIVE.luc).getTime();
   const fc = ["24", "48", "72"].map((k, i) => ({a: now + i * 864e5, b: now + (i + 1) * 864e5, v: valOf(k), e: RES ? RES.ket_qua[k].hgb_full_forecast.mae : null, k}));
-  const W = 640, Hh = 300, pl = 34, pr = 10, pt = 14, pb = 30;
+  const W = width("#trend", 300), Hh = W < 480 ? 250 : 300, pl = 30, pr = 8, pt = 14, pb = 30;
   const t0 = now - 72 * 36e5, t1 = now + 72 * 36e5;
   const ymax = Math.max(80, ...pts.map(p => p[1]), ...fc.map(f => (f.v || 0) + (f.e || 0))) * 1.08;
   const X = t => pl + (t - t0) / (t1 - t0) * (W - pl - pr), Y = v => pt + (1 - v / ymax) * (Hh - pt - pb);
@@ -534,13 +612,14 @@ function renderTrend() {
     <rect x="${X(now)}" y="${pt}" width="${W - pr - X(now)}" height="${Hh - pt - pb}" fill="${fill}" fill-opacity=".05"/>
     <line x1="${X(now)}" x2="${X(now)}" y1="${pt - 4}" y2="${Hh - pb}" stroke="${fill}" stroke-opacity=".5"/>
     <text x="${X(now) - 6}" y="${pt + 8}" text-anchor="end" font-size="11">bây giờ</text>
-    ${fc.map(f => f.v == null ? "" : `<g opacity="${f.k === DAY ? 1 : .62}">
+    ${fc.map((f, j) => f.v == null ? "" : `<g opacity="${f.k === DAY ? 1 : .62}"><g class="${anim ? "fc-blk" : ""}" style="animation-delay:${1.5 + j * .15}s">
       ${f.e ? `<rect x="${X(f.a) + 3}" y="${Y(f.v + f.e)}" width="${X(f.b) - X(f.a) - 6}" height="${Y(Math.max(0, f.v - f.e)) - Y(f.v + f.e)}" rx="5" fill="${qc(f.v)}" fill-opacity=".22"/>` : ""}
       <rect x="${X(f.a) + 3}" y="${Y(f.v) - 3}" width="${X(f.b) - X(f.a) - 6}" height="6" rx="3" fill="${qc(f.v)}"/>
-      <text x="${(X(f.a) + X(f.b)) / 2}" y="${Y(f.v + (f.e || 0)) - 8}" text-anchor="middle" font-size="15" font-weight="600" style="fill:#eef3f5">${fmt(f.v)}</text></g>`).join("")}
-    <path d="${path}" fill="none" stroke="${fill}" stroke-width="1.8" stroke-linejoin="round"/>
-    ${pts.length ? `<circle cx="${X(pts[pts.length - 1][0])}" cy="${Y(pts[pts.length - 1][1])}" r="4.5" fill="${qc(pts[pts.length - 1][1])}" stroke="#101b24" stroke-width="2"/>` : ""}
+      <text x="${(X(f.a) + X(f.b)) / 2}" y="${Y(f.v + (f.e || 0)) - 8}" text-anchor="middle" font-size="15" font-weight="600" style="fill:#eef3f5">${fmt(f.v)}</text></g></g>`).join("")}
+    <path class="${anim ? "trend-line" : ""}" d="${path}" fill="none" stroke="${fill}" stroke-width="1.8" stroke-linejoin="round"/>
+    ${pts.length ? `<circle class="now-dot" cx="${X(pts[pts.length - 1][0])}" cy="${Y(pts[pts.length - 1][1])}" r="4.5" fill="${qc(pts[pts.length - 1][1])}" stroke="#101b24" stroke-width="2"/>` : ""}
   </svg>`;
+  const tl = $("#trend .trend-line"); if (tl) tl.style.setProperty("--len", Math.ceil(tl.getTotalLength()));
   const last = pts[pts.length - 1];
   $("#pSub").textContent = (last ? `Mới nhất ${new Date(last[0]).getHours()}h: ${fmt(last[1])} µg/m³. ` : "Không có số đo 72 giờ qua. ") +
     "Khối màu là dự báo trung bình mỗi ngày; dải mờ là sai số trung bình của mô hình khi kiểm tra.";
@@ -584,7 +663,7 @@ function renderList() {
   $("#tramP").textContent = `${rows.length} trạm có đủ số đo để dùng, ${rows.length - off} trạm đang báo số. Trạm đang báo số được tô theo dự báo ngày mai; chấm rỗng là trạm đã ngừng gửi số lên OpenAQ.`;
 }
 
-function select(sid) { cur = sid; renderPick(); renderHero(); renderTrend(); renderList(); renderMap(); }
+function select(sid) { cur = sid; renderPick(); renderHero(); renderTrend(); renderList(); renderMap(); if (RES) renderBT(); }
 
 /* ---------- 10 năm ---------- */
 function renderHist() {
@@ -610,20 +689,21 @@ function renderCal() {
     ["T1","T2","T3","T4","T5","T6","T7","T8","T9","T10","T11","T12"].forEach((m, i) => { const x = pl + Math.floor((Date.UTC(2021, i, 1) - Date.UTC(2021, 0, 1)) / 864e5) * cw; s += `<text x="${x}" y="11" font-size="11">${m}</text>`; });
     years.forEach((y, r) => {
       const yy = top + r * (ch + gap);
-      s += `<text x="0" y="${yy + ch / 2 + 4}" font-size="12">${y}</text><rect x="${pl}" y="${yy}" width="${365 * cw}" height="${ch}" fill="var(--soft)" rx="2"/>`;
+      s += `<text x="0" y="${yy + ch / 2 + 4}" font-size="12">${y}</text><g class="row" style="transition-delay:${r * .07}s"><rect x="${pl}" y="${yy}" width="${365 * cw}" height="${ch}" fill="var(--soft)" rx="2"/>`;
       for (let k = 0; k < 366; k++) { const dt = new Date(Date.UTC(y, 0, 1 + k)); if (dt.getUTCFullYear() !== y) break;
         const key = dt.toISOString().slice(0, 10), v = byDay.get(key);
         if (v != null) s += `<rect x="${pl + k * cw}" y="${yy}" width="${cw}" height="${ch}" fill="${qc(v)}" data-t="${key}|${v}"/>`; }
+      s += "</g>";
     });
     box.innerHTML = s + "</svg>";
   } else {   // màn hẹp: lưới năm × tháng, mỗi ô là trung bình tháng
-    const cw = 25, ch = 22, pl = 40, top = 16, W = pl + 12 * (cw + 2), Hh = top + years.length * (ch + 3);
+    const pl = 40, W = width("#cal", 280), cw = (W - pl) / 12 - 2, ch = 22, top = 16, Hh = top + years.length * (ch + 3);
     const mm = new Map(); d.ngay.forEach((n, i) => { const k = n.slice(0, 7); mm.set(k, [...(mm.get(k) || []), d.v[i]]); });
     let s = `<svg viewBox="0 0 ${W} ${Hh}" role="img" aria-label="PM2.5 trung bình từng tháng từ 2017">`;
     for (let m = 0; m < 12; m++) s += `<text x="${pl + m * (cw + 2) + cw / 2}" y="11" font-size="10" text-anchor="middle">${m + 1}</text>`;
-    years.forEach((y, r) => { const yy = top + r * (ch + 3); s += `<text x="0" y="${yy + ch / 2 + 4}" font-size="11">${y}</text>`;
+    years.forEach((y, r) => { const yy = top + r * (ch + 3); s += `<text x="0" y="${yy + ch / 2 + 4}" font-size="11">${y}</text><g class="row" style="transition-delay:${r * .07}s">`;
       for (let m = 0; m < 12; m++) { const a = mm.get(`${y}-${String(m + 1).padStart(2, "0")}`); const v = a && a.length >= 10 ? a.reduce((p, q) => p + q, 0) / a.length : null;
-        s += `<rect x="${pl + m * (cw + 2)}" y="${yy}" width="${cw}" height="${ch}" rx="3" fill="${v == null ? "var(--soft)" : qc(v)}" ${v == null ? "" : `data-t="${y}-${String(m + 1).padStart(2, "0")}|${v}"`}/>`; } });
+        s += `<rect x="${pl + m * (cw + 2)}" y="${yy}" width="${cw}" height="${ch}" rx="3" fill="${v == null ? "var(--soft)" : qc(v)}" ${v == null ? "" : `data-t="${y}-${String(m + 1).padStart(2, "0")}|${v}"`}/>`; } s += "</g>"; });
     box.innerHTML = s + "</svg>";
     $("#calSub").textContent = "Mỗi ô là trung bình một tháng (màn hình rộng sẽ hiện từng ngày), màu theo thang VN_AQI. Ô trống là tháng có dưới 10 ngày đủ số đo.";
   }
@@ -634,12 +714,12 @@ function renderCal() {
   box.onmouseleave = () => tip.style.opacity = 0;
 }
 function renderMonths() {
-  const t = HIST.thang, W = 560, Hh = 230, pl = 34, pb = 26, pt = 22, bw = (W - pl) / 12;
+  const t = HIST.thang, W = width("#months", 280), Hh = 240, pl = 34, pb = 26, pt = 22, bw = (W - pl) / 12, narrow = bw < 30;
   const Y = p => pt + (1 - p / .7) * (Hh - pt - pb);
   let s = `<svg viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Tỷ lệ ngày vượt 50 theo tháng">`;
   [0, .2, .4, .6].forEach(p => s += `<line x1="${pl}" x2="${W}" y1="${Y(p)}" y2="${Y(p)}" stroke="var(--line)"/><text x="${pl - 6}" y="${Y(p) + 4}" font-size="11" text-anchor="end">${p * 100}%</text>`);
   t.forEach((m, i) => { const x = pl + i * bw + 5, w = bw - 10;
-    s += `<rect x="${x}" y="${Y(m.vuot)}" width="${w}" height="${Y(0) - Y(m.vuot)}" rx="4" fill="${qc(m.tb)}"/><text x="${x + w / 2}" y="${Y(m.vuot) - 6}" font-size="11" text-anchor="middle" style="fill:var(--ink)">${fmt(m.tb)}</text><text x="${x + w / 2}" y="${Hh - 8}" font-size="11" text-anchor="middle">T${m.thang}</text>`; });
+    s += `<rect class="mb" style="transition-delay:${i * .05}s" x="${x}" y="${Y(m.vuot)}" width="${w}" height="${Y(0) - Y(m.vuot)}" rx="4" fill="${qc(m.tb)}"/><text x="${x + w / 2}" y="${Y(m.vuot) - 6}" font-size="${narrow ? 10 : 11}" text-anchor="middle" style="fill:var(--ink)">${fmt(m.tb)}</text><text x="${x + w / 2}" y="${Hh - 8}" font-size="${narrow ? 10 : 11}" text-anchor="middle">${narrow ? "" : "T"}${m.thang}</text>`; });
   $("#months").innerHTML = s + "</svg>";
 }
 
@@ -662,6 +742,7 @@ function renderEval() {
     <div class="stat"><b>${Math.round((1 - me.mae / base.mae) * 100)}%</b><span>sai số thấp hơn cách lấy trung bình 24 giờ vừa qua</span></div>
     <div class="stat"><b>${pct(cb.bat_duoc)}</b><span>số ngày vượt 50 µg/m³ được báo trước (trên ${cb.so_ngay_vuot.toLocaleString("vi")} lượt trạm·ngày)</span></div>
     <div class="stat"><b>${pct(cb.bao_nham)}</b><span>số lần cảnh báo mà thực tế không vượt</span></div>`;
+  if (!$("#facts").closest(".rv")) $("#facts").querySelectorAll("b").forEach(countUp);
   const ci = r.ci || {}, net = ci.hgb_full_forecast_vs_hgb_own_forecast, gru = r.gru_forecast;
   $("#evalNote").textContent = `Kiểm tra từ ${vnDate(r.test_tu.slice(0, 10))} đến ${vnDate(r.test_den.slice(0, 10))}, ${r.so_dong.test.toLocaleString("vi")} lượt dự báo. ` +
     (net ? `Thêm số đo các trạm lân cận đổi sai số ${net.delta.toFixed(2).replace(".", ",")} µg/m³ (khoảng tin cậy 95% từ ${net.lo.toFixed(2).replace(".", ",")} đến ${net.hi.toFixed(2).replace(".", ",")}). ` : "") +
@@ -678,7 +759,7 @@ function renderAnalysis() {
     const m = a.theo_muc, ks = Object.keys(m), mx = Math.max(...ks.map(k => Math.abs(m[k].bias)));
     const mid = {"<25": 12, "25–50": 37, "50–80": 65, "80–150": 110, ">150": 200};
     $("#lvBars").innerHTML = ks.map(k => { const b = m[k].bias, w = Math.abs(b) / mx * 50;
-      return `<span>${k.replace("<", "dưới ").replace(">", "trên ")}</span><span class="track"><i style="left:${b < 0 ? 50 - w : 50}%;width:${w}%;background:${css("--q" + lvl(mid[k])[2])}"></i></span><span class="v">${b >= 0 ? "+" : ""}${f1(b)}</span>`; }).join("") +
+      return `<span>${k.replace("<", "dưới ").replace(">", "trên ")}</span><span class="track"><i style="--o:${b < 0 ? "right" : "left"};left:${b < 0 ? 50 - w : 50}%;width:${w}%;background:${css("--q" + lvl(mid[k])[2])}"></i></span><span class="v">${b >= 0 ? "+" : ""}${f1(b)}</span>`; }).join("") +
       `<span></span><span style="font-size:12px;color:var(--muted);display:flex;justify-content:space-between"><span>đoán thấp</span><span>đoán cao</span></span><span></span>`;
     const v = a.vuot_nguong;
     $("#miss").innerHTML = `<p><b>${pct(v.bo_sot / v.tong)}</b> trong ${v.tong.toLocaleString("vi")} lượt trạm·ngày vượt ngưỡng bị bỏ sót, thường thiếu khoảng ${fmt(v.bo_sot_thieu_tb)} µg/m³.</p>
@@ -698,9 +779,13 @@ async function renderBT() {
   const sid = (station() && RES.ket_qua[H].theo_tram[cur]) ? cur : +ids[0][0];
   const res = await fetch(`/api/doi-chieu?sid=${sid}&h=${H}`);
   if (!res.ok) { $("#bt").innerHTML = ""; return; }
-  const d = await res.json();
+  BTD = {d: await res.json(), sid}; drawBT(true);
+}
+let BTD = null;
+function drawBT(anim) {
+  if (!BTD) return; const {d, sid} = BTD;
   $("#btSub").textContent = `${RES.ten_tram[sid] || sid}, ${d.length} ngày gần nhất trong tập kiểm tra. Dự báo lập lúc 7 giờ sáng, trước ${H / 24} ngày.`;
-  const W = 620, Hh = 300, pl = 32, pr = 8, pt = 10, pb = 26;
+  const W = width("#bt", 280), Hh = W < 480 ? 230 : 300, pl = 30, pr = 6, pt = 10, pb = 26;
   const ymax = Math.max(60, ...d.map(x => Math.max(x.thuc_do, x.du_bao))) * 1.08;
   const X = i => pl + i / (d.length - 1 || 1) * (W - pl - pr), Y = v => pt + (1 - v / ymax) * (Hh - pt - pb);
   const line = k => d.map((x, i) => x[k] == null ? "" : (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(x[k]).toFixed(1)).join("");
@@ -709,8 +794,10 @@ async function renderBT() {
   $("#bt").innerHTML = `<svg viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Dự báo so với thực đo">
     ${ticks.map(v => `<line x1="${pl}" x2="${W - pr}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)" ${v === 50 ? 'stroke-dasharray="4 4"' : ""}/><text x="${pl - 6}" y="${Y(v) + 4}" text-anchor="end" font-size="11">${v}</text>`).join("")}
     ${months.map(([i, n]) => `<text x="${X(i)}" y="${Hh - 6}" font-size="11" text-anchor="middle">${+n.slice(5, 7)}/${n.slice(0, 4)}</text>`).join("")}
-    <path d="${line("thuc_do")}" fill="none" stroke="var(--muted)" stroke-width="5" stroke-opacity=".35" stroke-linejoin="round"/>
-    <path d="${line("du_bao")}" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round"/></svg>`;
+    <path class="ln" d="${line("thuc_do")}" fill="none" stroke="var(--muted)" stroke-width="5" stroke-opacity=".35" stroke-linejoin="round"/>
+    <path class="ln" d="${line("du_bao")}" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round"/></svg>`;
+  document.querySelectorAll("#bt path.ln").forEach(p => { const L = Math.ceil(p.getTotalLength()); p.style.setProperty("--len", L);
+    if (anim && !RM && !$("#bt").closest(".rv")) { p.style.transition = "none"; p.style.strokeDashoffset = L; void p.getBoundingClientRect(); p.style.transition = ""; p.style.strokeDashoffset = 0; } });
 }
 
 /* ---------- cách làm (số lấy từ dữ liệu) ---------- */
@@ -743,9 +830,12 @@ async function load(force) {
   if (HIST) renderHist(); else $("#lich-su").hidden = true;
   if (RES) renderEval(); else $("#tin-cay").hidden = true;
   renderSteps();
+  document.body.classList.remove("wait");
+  if (!RM) { document.body.classList.add("intro"); setTimeout(() => document.body.classList.remove("intro"), 2600); }
 }
-drawCity(); setHaze(null);
-let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => HIST && renderCal(), 200); });
+slides(); reveal();
+let rz, lastW = innerWidth; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { if (innerWidth === lastW) return; lastW = innerWidth;
+  LIVE && renderTrend(false); HIST && (renderCal(), renderMonths()); drawBT(false); }, 200); });
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { LIVE && select(cur); RES && renderEval(); HIST && renderHist(); });
 load();
 </script>
