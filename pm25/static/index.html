@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
-:root{
+:root{ --fh:clamp(220px,22vw,380px); --fo:calc(var(--fh) * .45);
   --night:#101b24; --night2:#16242f; --on-night:#eef3f5; --on-night-m:rgba(238,243,245,.74); --glass:rgba(10,17,23,.62); --glass-line:rgba(238,243,245,.16);
   /* tông tối màu bụi: đen → xám tiêu; phần cuối trang (.lite) tan thành trắng ngà */
   --bg:#f1f0eb; --paper:#fbfaf7; --ink:#1d2124; --muted:#55595b; --line:#d6d3cb; --soft:#e6e3dc; --focus:#1f6fb2;
@@ -48,7 +48,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;font-stretch:88%;letter-spac
 .hero-shade{position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:linear-gradient(90deg,rgba(10,17,23,.84) 0%,rgba(10,17,23,.66) 30%,rgba(10,17,23,.18) 58%,rgba(10,17,23,0) 74%),
   linear-gradient(180deg,rgba(10,17,23,.55) 0%,rgba(10,17,23,0) 16%,rgba(10,17,23,0) 70%,rgba(10,17,23,.7) 100%)}
-.photo{position:absolute;right:calc(max(0px, (100% - var(--maxw)) / 2) + var(--gut));bottom:20px;display:flex;align-items:center;gap:14px;font-size:12.5px;color:var(--on-night-m);z-index:1;max-width:calc(100% - 2*var(--gut))}
+.photo{position:absolute;right:calc(max(0px, (100% - var(--maxw)) / 2) + var(--gut));bottom:calc(var(--fo) + 14px);display:flex;align-items:center;gap:14px;font-size:12.5px;color:var(--on-night-m);z-index:1;max-width:calc(100% - 2*var(--gut))}
 .photo p{margin:0;text-align:right;text-shadow:0 1px 6px rgba(0,0,0,.6);min-width:0}
 .photo p b{color:var(--on-night);font-weight:500;display:block;font-size:13.5px}
 .photo a{color:inherit}
@@ -98,7 +98,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;font-stretch:88%;letter-spac
 .top nav a{text-decoration:none;color:var(--on-night-m);padding:4px 0;border-bottom:2px solid transparent}
 .top nav a:hover{color:var(--on-night);border-color:currentColor}
 
-.hero-grid{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:clamp(24px,4vw,64px);align-items:start;padding:clamp(8px,3vh,36px) 0 clamp(96px,16vh,170px)}
+.hero-grid{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:clamp(24px,4vw,64px);align-items:start;padding:clamp(8px,3vh,36px) 0 calc(var(--fo) + 90px)}
 .lead{font-size:15.5px;color:var(--on-night-m);margin:0 0 4px}
 .lead b{color:var(--on-night);font-weight:500}
 .big{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin:2px 0 4px}
@@ -153,15 +153,13 @@ h1,h2,h3{font-family:var(--display);font-weight:800;font-stretch:88%;letter-spac
 .legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--on-night-m);margin:4px 0 2px}
 .legend i{display:inline-block;vertical-align:middle;margin-right:6px}
 .err{background:#fbe9e7;color:#7a1f14;border-radius:10px;padding:10px 14px;margin:0 0 12px;font-size:14px}
-.skip-scroll{position:absolute;left:calc(max(0px, (100% - var(--maxw)) / 2) + var(--gut));bottom:20px;z-index:1;font-size:13px;color:var(--on-night-m);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:4px}
+.skip-scroll{position:absolute;left:calc(max(0px, (100% - var(--maxw)) / 2) + var(--gut));bottom:calc(var(--fo) + 14px);z-index:1;font-size:13px;color:var(--on-night-m);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:4px}
 
 /* chuyển hero → nền sáng */
 /* ngay dưới banner: đen → xám tiêu → trắng ngà */
-.fade{height:clamp(200px,24vw,340px);margin-top:-1px;background:linear-gradient(180deg,var(--night) 0%,#1c2226 10%,#2e3335 22%,#45484a 34%,#5f6161 46%,#7d7e7b 57%,#9d9c97 68%,#bcbab3 79%,#d6d4cd 89%,#e8e6e0 96%,var(--bg) 100%)}
+.fade{position:relative;z-index:2;pointer-events:none;height:var(--fh);margin-top:calc(-1 * var(--fo));
+  background:linear-gradient(180deg,rgba(16,27,36,0) 0%,rgba(16,27,36,.5) 14%,rgba(22,28,32,.86) 28%,#2a2f32 38%,#414546 47%,#5f615f 56%,#83837f 64%,#a8a7a1 72%,#c9c7c0 80%,#e0ded7 88%,#ecebe5 95%,var(--bg) 100%)}
 main{position:relative;isolation:isolate}
-/* hạt bụi rất nhẹ phủ trên nền */
-main:after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ================= SECTIONS ================= */
 section.band{padding-top:28px;padding-bottom:72px}
@@ -257,6 +255,8 @@ footer{color:var(--muted);font-size:13px;padding-top:8px;padding-bottom:48px}
 @media (max-width:1100px){
   .top nav{display:none}
   .hero{min-height:0}
+  :root{--fh:clamp(150px,30vw,240px); --fo:0px}
+  .fade{background:linear-gradient(180deg,var(--night) 0%,#1d2327 16%,#33383a 30%,#525453 44%,#7b7b78 56%,#a5a49e 68%,#c9c7c0 80%,#e2e0d9 90%,var(--bg) 100%)}
   .slides{bottom:auto;height:min(80svh,760px)}
   .slides:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,17,23,.5) 0%,rgba(10,17,23,0) 12%,rgba(10,17,23,0) 22%,rgba(10,17,23,.72) 40%,rgba(10,17,23,.8) 70%,var(--night) 100%)}
   .hero-shade{display:none}
@@ -954,6 +954,23 @@ async function load(force) {
   heroRise(); introFill && introFill();
 }
 /* ---------- màn mở đầu: lăn chuột, vuốt hoặc phím ↓ để đi từng bước; Esc hoặc "Bỏ qua" để vào thẳng ---------- */
+/* số đo về theo giờ: khi trang đang mở, 10 phút hỏi lại một lần; quay lại tab thì hỏi ngay nếu đã quá 10 phút */
+let LAST = Date.now();
+async function refreshLive() {
+  if (document.hidden) return;
+  LAST = Date.now();
+  try {
+    const x = await fetch("/api/hien-tai"); if (!x.ok) return;
+    const d = await x.json();
+    if (LIVE && d.luc === LIVE.luc && d.tao_luc === LIVE.tao_luc) return;
+    LIVE = d; const t = new Date(LIVE.luc);
+    $("#meta").textContent = `Số đo đến ${t.getHours()} giờ ngày ${dmy(t)}`;
+    $("#err").innerHTML = LIVE.loi ? `<div class="err">${esc(LIVE.loi)}</div>` : "";
+    select(cur);
+  } catch (e) { /* mạng chập chờn: giữ số đang hiện, lần sau hỏi lại */ }
+}
+setInterval(refreshLive, 10 * 60 * 1000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden && Date.now() - LAST > 10 * 60 * 1000) refreshLive(); });
 let INTRO_ON = false, ROSE = false, introFill = null;
 function heroRise() {
   if (RM || ROSE || INTRO_ON || document.body.classList.contains("wait")) return;

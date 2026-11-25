@@ -13,7 +13,7 @@ import pandas as pd
 from . import config, dataset, fetch
 
 CACHE = config.OUT / "live.json"
-TTL = 30 * 60
+TTL = 15 * 60
 _lock = threading.Lock()
 WVARS = ["temperature_2m", "relative_humidity_2m", "dew_point_2m", "precipitation", "surface_pressure", "cloud_cover",
          "wind_speed_10m", "wind_direction_10m", "wind_gusts_10m", "boundary_layer_height", "shortwave_radiation"]
