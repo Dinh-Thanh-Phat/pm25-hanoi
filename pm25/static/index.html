@@ -572,6 +572,11 @@ html.intro-fly .big .n{opacity:0}
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
+/* bản tĩnh (Vercel) đọc file JSON xuất sẵn; bản chạy máy gọi API FastAPI */
+const STATIC = document.documentElement.dataset.static === "1";
+const api = (name, q = {}) => STATIC
+  ? (name === "doi-chieu" ? `data/doi-chieu/${q.sid}_${q.h}.json` : `data/${name}.json`) + `?v=${Math.floor(Date.now() / 300000)}`
+  : `/api/${name}` + (Object.keys(q).length ? "?" + new URLSearchParams(q) : "");
 const $ = s => document.querySelector(s);
 const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const LV = [[25,"Tốt",1],[50,"Trung bình",2],[80,"Kém",3],[150,"Xấu",4],[250,"Rất xấu",5],[1e9,"Nguy hại",6]];
@@ -897,7 +902,7 @@ function renderAnalysis() {
 async function renderBT() {
   const ids = Object.entries(RES.ket_qua[H].theo_tram).sort((a, b) => b[1].n - a[1].n);
   const sid = (station() && RES.ket_qua[H].theo_tram[cur]) ? cur : +ids[0][0];
-  const res = await fetch(`/api/doi-chieu?sid=${sid}&h=${H}`);
+  const res = await fetch(api("doi-chieu", {sid, h: H}));
   if (!res.ok) { $("#bt").innerHTML = ""; return; }
   BTD = {d: await res.json(), sid}; drawBT(true);
 }
@@ -934,8 +939,8 @@ function renderSteps() {
 
 async function load(force) {
   const [l, r, h, m] = await Promise.allSettled([
-    fetch("/api/hien-tai" + (force ? "?lam_moi=true" : "")).then(x => x.ok ? x.json() : x.json().then(j => Promise.reject(new Error(j.detail || x.status)))),
-    fetch("/api/ket-qua").then(x => x.ok ? x.json() : null), fetch("/api/lich-su").then(x => x.ok ? x.json() : null), fetch("/api/tram").then(x => x.ok ? x.json() : null)]);
+    fetch(api("hien-tai", force && !STATIC ? {lam_moi: true} : {})).then(x => x.ok ? x.json() : x.json().then(j => Promise.reject(new Error(j.detail || x.status)))),
+    fetch(api("ket-qua")).then(x => x.ok ? x.json() : null), fetch(api("lich-su")).then(x => x.ok ? x.json() : null), fetch(api("tram")).then(x => x.ok ? x.json() : null)]);
   RES = r.value || null; HIST = h.value || null; META = m.value || null;
   if (l.status === "fulfilled") {
     LIVE = l.value;
@@ -960,7 +965,7 @@ async function refreshLive() {
   if (document.hidden) return;
   LAST = Date.now();
   try {
-    const x = await fetch("/api/hien-tai"); if (!x.ok) return;
+    const x = await fetch(api("hien-tai")); if (!x.ok) return;
     const d = await x.json();
     if (LIVE && d.luc === LIVE.luc && d.tao_luc === LIVE.tao_luc) return;
     LIVE = d; const t = new Date(LIVE.luc);
