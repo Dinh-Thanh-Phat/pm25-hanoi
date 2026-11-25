@@ -2,14 +2,14 @@
 // Trả về {khổ: {exp, bad[]}}; bad phải rỗng (bỏ qua chính các khung .wrap vì hộp của chúng gồm cả lề).
 async (page) => {
   const res = {};
-  for (const w of [320, 360, 390, 430, 600, 768, 820, 1024, 1180, 1280, 1440, 1920]) {
+  for (const w of [320, 360, 390, 430, 600, 768, 820, 1024, 1180, 1280, 1440, 1680, 1866, 1920, 2560]) {
     await page.setViewportSize({width: w, height: 900});
     await page.goto('http://localhost:8200/?nointro&t=' + Date.now());
     await page.waitForFunction(() => !document.body.classList.contains('wait'));
     await page.waitForTimeout(300);
     res[w] = await page.evaluate(() => {
       const cw = document.documentElement.clientWidth, gut = parseFloat(getComputedStyle(document.querySelector('.wrap')).paddingLeft);
-      const exp = Math.max(0, (cw - 1240) / 2) + gut, bad = new Set();
+      const mw = parseFloat(getComputedStyle(document.querySelector('.wrap')).maxWidth), exp = Math.max(0, (cw - mw) / 2) + gut, bad = new Set();
       document.querySelectorAll('.hero-grid *, .top *, main *, footer *, .photo *').forEach(e => {
         if (e.classList.contains('wrap') || e.closest('.leaflet-container, .tbl, svg, details:not([open]) > :not(summary)')) return;
         const b = e.getBoundingClientRect(); if (!b.width || !b.height) return;
