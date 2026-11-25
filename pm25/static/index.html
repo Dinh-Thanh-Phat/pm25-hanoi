@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
-:root{ --fh:clamp(220px,22vw,380px); --fo:calc(var(--fh) * .45);
+:root{ --fh:clamp(280px,26vw,460px); --fo:calc(var(--fh) * .45);
   --night:#101b24; --night2:#16242f; --on-night:#eef3f5; --on-night-m:rgba(238,243,245,.74); --glass:rgba(10,17,23,.62); --glass-line:rgba(238,243,245,.16);
   /* tông tối màu bụi: đen → xám tiêu; phần cuối trang (.lite) tan thành trắng ngà */
   --bg:#f1f0eb; --paper:#fbfaf7; --ink:#1d2124; --muted:#55595b; --line:#d6d3cb; --soft:#e6e3dc; --focus:#1f6fb2;
@@ -158,7 +158,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;font-stretch:88%;letter-spac
 /* chuyển hero → nền sáng */
 /* ngay dưới banner: đen → xám tiêu → trắng ngà */
 .fade{position:relative;z-index:2;pointer-events:none;height:var(--fh);margin-top:calc(-1 * var(--fo));
-  background:linear-gradient(180deg,rgba(16,27,36,0) 0%,rgba(16,27,36,.5) 14%,rgba(22,28,32,.86) 28%,#2a2f32 38%,#414546 47%,#5f615f 56%,#83837f 64%,#a8a7a1 72%,#c9c7c0 80%,#e0ded7 88%,#ecebe5 95%,var(--bg) 100%)}
+  background:linear-gradient(180deg,rgba(16,27,36,0.00) 0%,rgba(16,27,36,0.05) 5%,rgba(16,27,36,0.19) 10%,rgba(16,27,36,0.38) 15%,rgba(16,27,36,0.58) 20%,rgba(17,28,37,0.78) 25%,rgba(20,30,39,0.93) 30%,rgba(25,34,42,1.00) 35%,#20282f 40%,#293137 45%,#363d41 50%,#464b4f 55%,#585d5f 60%,#6e7172 65%,#868888 70%,#9fa09e 75%,#b7b8b5 80%,#cececa 85%,#e0e0db 90%,#edece7 95%,#f1f0eb 100%)}
 main{position:relative;isolation:isolate}
 
 /* ================= SECTIONS ================= */
@@ -255,8 +255,8 @@ footer{color:var(--muted);font-size:13px;padding-top:8px;padding-bottom:48px}
 @media (max-width:1100px){
   .top nav{display:none}
   .hero{min-height:0}
-  :root{--fh:clamp(150px,30vw,240px); --fo:0px}
-  .fade{background:linear-gradient(180deg,var(--night) 0%,#1d2327 16%,#33383a 30%,#525453 44%,#7b7b78 56%,#a5a49e 68%,#c9c7c0 80%,#e2e0d9 90%,var(--bg) 100%)}
+  :root{--fh:clamp(200px,40vw,300px); --fo:0px}
+  .fade{background:linear-gradient(180deg,#101b24 0%,#111b24 5%,#121d26 10%,#151f28 15%,#1a232b 20%,#1f282f 25%,#272f35 30%,#30373d 35%,#3b4246 40%,#494e51 45%,#585d5f 50%,#696d6e 55%,#7c7f7f 60%,#8f9190 65%,#a3a5a3 70%,#b7b8b5 75%,#c9c9c6 80%,#d9d9d5 85%,#e6e5e1 90%,#eeede8 95%,#f1f0eb 100%)}
   .slides{bottom:auto;height:min(80svh,760px)}
   .slides:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,17,23,.5) 0%,rgba(10,17,23,0) 12%,rgba(10,17,23,0) 22%,rgba(10,17,23,.72) 40%,rgba(10,17,23,.8) 70%,var(--night) 100%)}
   .hero-shade{display:none}

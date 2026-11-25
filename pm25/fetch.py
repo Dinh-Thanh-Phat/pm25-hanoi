@@ -114,6 +114,45 @@ def fetch_pm25() -> None:
     st.to_csv(config.RAW / "stations.csv", index=False)
 
 
+def update_pm25(lui_ngay: int = 2) -> dict:
+    """Tải bù: với mỗi trạm đã có file, chỉ lấy các giờ từ (giờ cuối - lui_ngay) đến nay rồi gộp, giờ trùng lấy bản mới.
+    Trạm đã ngừng chỉ tốn 1 lệnh. Trả về số giờ mới thêm theo trạm."""
+    st = pd.read_csv(config.RAW / "stations.csv")
+    out, k, now = config.RAW / "pm25", _key(), pd.Timestamp.now(tz="UTC").tz_convert(None).floor("h")
+    added = {}
+    for s in st.itertuples():
+        f = out / f"{s.location_id}.parquet"
+        if not f.exists():
+            continue
+        old = pd.read_parquet(f)
+        a = (old.time.max() if len(old) else pd.Timestamp(s.tu)) - pd.Timedelta(days=lui_ngay)
+        recs, page = [], 1
+        while True:
+            q = urllib.parse.urlencode({"limit": 1000, "page": page, "datetime_from": a.isoformat(),
+                                        "datetime_to": (now + pd.Timedelta(hours=1)).isoformat()})
+            try:
+                d = _get(f"{config.OPENAQ}/sensors/{s.sensor_id}/hours?{q}", {"X-API-Key": k}, tries=3)
+            except Exception as e:                       # một trạm lỗi thì bỏ qua, các trạm khác vẫn chạy
+                print(f"   {s.ten}: lỗi {type(e).__name__}", flush=True)
+                break
+            recs += [(x["period"]["datetimeFrom"]["utc"], x["value"], x["coverage"].get("observedCount")) for x in d["results"]]
+            time.sleep(1.1)                              # giới hạn 60 lệnh/phút
+            if len(d["results"]) < 1000:
+                break
+            page += 1
+        if not recs:
+            continue
+        new = pd.DataFrame(recs, columns=["time", "pm25", "n_obs"])
+        new["time"] = pd.to_datetime(new["time"], utc=True).dt.tz_convert(None)
+        df = pd.concat([old, new]).drop_duplicates("time", keep="last").sort_values("time")
+        n = len(df) - len(old)
+        if n or len(new):
+            df.to_parquet(f, index=False)
+        if n:
+            added[s.ten] = n
+    return added
+
+
 # ---------- thời tiết + CAMS ----------
 WEATHER_VARS = ["temperature_2m", "relative_humidity_2m", "dew_point_2m", "precipitation", "surface_pressure",
                 "cloud_cover", "wind_speed_10m", "wind_direction_10m", "wind_gusts_10m", "boundary_layer_height",
@@ -189,6 +228,8 @@ def fetch_forecast() -> None:
 
 if __name__ == "__main__":
     what = sys.argv[1] if len(sys.argv) > 1 else "all"
+    if what == "update":
+        print(update_pm25())
     if what in ("pm25", "all"):
         fetch_pm25()
     if what in ("weather", "all"):
